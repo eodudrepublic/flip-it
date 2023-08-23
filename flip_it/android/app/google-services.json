@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "596199382762",
+    "project_id": "take-off-c23a1",
+    "storage_bucket": "take-off-c23a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596199382762:android:db62555056f2c97936c193",
+        "android_client_info": {
+          "package_name": "com.takeoff.flip_it"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596199382762-jrkj2o90fr5er01jcollooi9mkaigeqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABHR3oIm2lu321I3rrfn9RXpqXkiFvfNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596199382762-jrkj2o90fr5er01jcollooi9mkaigeqi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "596199382762-20dddkekm4bl0uj4l6f7ot2jvkkmh2s0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flipIt"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
