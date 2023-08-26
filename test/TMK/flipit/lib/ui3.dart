@@ -10,20 +10,19 @@ class UI3 extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white70,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            iconSize: 40,
-            color: Colors.black38,
-            icon: Icon(Icons.account_circle),
-          )
-        ],
-        leading: Icon(
-            size: 40,
-            color: Color(0xffFF5EFF),
-            Icons.style), //2안 - Icons.photo_filter
-      ),
+    backgroundColor: Colors.white70,
+    actions: [
+      IconButton(
+        onPressed: () {},
+        iconSize: 40,
+        color: Colors.black38,
+        icon: Icon(Icons.account_circle),)
+    ],
+    leading: Padding(
+    padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
+    child: Image.asset('images/appIcon1.png'),
+    ), //2안 - Icons.photo_filter
+    ),
       body: Container(
         margin: EdgeInsets.fromLTRB(0,29,0,0),
         child: SingleChildScrollView(
@@ -60,7 +59,7 @@ class UI3 extends StatelessWidget {
                       height: 170.0,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('heart.png'),
+                          image: AssetImage('images/heart.png'),
                           fit:BoxFit.cover
                         ),
                         //color: Colors.transparent,
@@ -109,7 +108,7 @@ class UI3 extends StatelessWidget {
                     height: 150.0,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('dumbbell.png'),
+                          image: AssetImage('images/dumbbell.png'),
                           fit:BoxFit.cover
                       ),
                       borderRadius: BorderRadius.circular(30.0),
@@ -146,7 +145,7 @@ class UI3 extends StatelessWidget {
                     height: 150.0,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('alcohol.png'),
+                          image: AssetImage('images/glasses.png'),
                           fit:BoxFit.cover
                       ),
                       borderRadius: BorderRadius.circular(30.0),

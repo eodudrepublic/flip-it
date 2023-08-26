@@ -8,8 +8,14 @@ class  UI4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-
           appBar:AppBar(
+            title: Text(
+                'My 잇',
+                style: TextStyle(
+                    color: Colors.black,
+                  fontWeight: FontWeight.bold
+                )
+            ),
             backgroundColor: Colors.white70,
             actions: [
               IconButton(
@@ -19,22 +25,42 @@ class  UI4 extends StatelessWidget {
                 icon: Icon(Icons.account_circle),
               )
             ],
-            leading: Icon(
-                size: 40,
-                color: Color(0xffFF5EFF),
-                Icons.style), //2안 - Icons.photo_filter
+            leading: Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
+              child: Image.asset('images/appIcon1.png'),
+            ), //2안 - Icons.photo_filter
           ),
           body: Container(
-            decoration: BoxDecoration(
-              color: Color(0xffFEC200),
-              borderRadius: BorderRadius.circular(45.51),
+            child: Center(
+              child: Material(
+                child: Container(
+                  width: 360.0,
+                  height: 190.0,
+                  margin: EdgeInsets.fromLTRB(42, 17, 0, 0),
+                  padding: EdgeInsets.fromLTRB(33.85, 33.85, 26, 10),
+                  decoration: BoxDecoration(
+                    color: Color(0xffFEC200),
+                    borderRadius: BorderRadius.circular(45.51),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(40.0),
+                    //child: Icons.navigate_next,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                        '테콮',
+                        style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w900)),
+                        Spacer(),
+                        Text("모집 기간: 9.1 ~ 9.15")
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
-            width: 275.16, height: 192.94,
-            margin: EdgeInsets.fromLTRB(42, 17, 0, 0),
-            padding: EdgeInsets.fromLTRB(33.85, 33.85, 26, 10),
-            child: Text(
-                '테콮',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900)),
           ),
           bottomNavigationBar: BottomAppBar(
             child: Container(
