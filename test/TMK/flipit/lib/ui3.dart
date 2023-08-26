@@ -40,7 +40,6 @@ class UI3 extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-
                   height: 20,
                 ),
                 GestureDetector(
