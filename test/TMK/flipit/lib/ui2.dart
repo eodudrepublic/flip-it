@@ -173,7 +173,7 @@ class _UI2State extends State<UI2> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            hintText: "연애스타일 (밸런스 게임 3문 3답)",
+                            hintText: "연애스타일 [밸런스 게임 3문 3답]",
                             hintStyle: TextStyle(
                               color: Colors.grey,
                               fontWeight: FontWeight.bold,
