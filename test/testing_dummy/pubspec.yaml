@@ -1,5 +1,5 @@
-name: flip_it
-description: Flip It for DX Camp 2023 (Team TakeOff)
+name: testing_dummy
+description: for testing
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -13,16 +13,6 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
-
-  # firebase 관련 packages
-  cloud_firestore: ^4.8.5
-
-  firebase_core: ^2.15.1
-  firebase_auth: ^4.7.3
-  firebase_messaging: ^14.6.6
-  firebase_storage: ^11.2.6
-  firebase_analytics: ^10.4.5
-
   kakao_flutter_sdk_user: ^1.4.1 # 카카오 로그인
 
 dev_dependencies:
