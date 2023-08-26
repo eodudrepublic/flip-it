@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 class UI3 extends StatelessWidget {
   const UI3({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +15,7 @@ class UI3 extends StatelessWidget {
         onPressed: () {},
         iconSize: 40,
         color: Colors.black38,
-        icon: Icon(Icons.account_circle),)
+        icon: Icon(Icons.person_outline),)
     ],
     leading: Padding(
     padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
@@ -68,6 +67,7 @@ class UI3 extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(40.0),
                         //child: Icons.navigate_next,
+
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -233,6 +233,9 @@ class _CustomDialogState extends State<CustomDialog> {
           // 팝업 내용
           AlertDialog(
             backgroundColor: Colors.black.withOpacity(0.8),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0), // 원하는 모서리 반지름 설정
+            ),
             title: Center(
               child: Column(
                 children: [
@@ -273,18 +276,26 @@ class _CustomDialogState extends State<CustomDialog> {
               ],
             ),
             actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(
-                  '입장하기',
-                  style: TextStyle(color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0,0,36.0,16.0),
+                child: TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    '입장하기',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(
-                  '닫기',
-                  style: TextStyle(color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0,0,0,16.0),
+                child: TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    '닫기',
+                    style: TextStyle(color: Colors.white),
+
+                  ),
+
                 ),
               ),
             ],

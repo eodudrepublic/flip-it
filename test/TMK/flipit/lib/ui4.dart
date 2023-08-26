@@ -30,38 +30,39 @@ class  UI4 extends StatelessWidget {
               child: Image.asset('images/appIcon1.png'),
             ), //2안 - Icons.photo_filter
           ),
-          body: Container(
-            child: Center(
-              child: Material(
-                child: Container(
-                  width: 360.0,
-                  height: 190.0,
-                  margin: EdgeInsets.fromLTRB(42, 17, 0, 0),
-                  padding: EdgeInsets.fromLTRB(33.85, 33.85, 26, 10),
-                  decoration: BoxDecoration(
-                    color: Color(0xffFEC200),
-                    borderRadius: BorderRadius.circular(45.51),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(40.0),
-                    //child: Icons.navigate_next,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                        '테콮',
-                        style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w900)),
-                        Spacer(),
-                        Text("모집 기간: 9.1 ~ 9.15")
-                      ],
-                    ),
-                  ),
-                ),
+          body: Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color(0xffFEC200),
+                borderRadius: BorderRadius.circular(60),
               ),
+              width: 400.0, height: 280.0,
+              margin: EdgeInsets.fromLTRB(0, 29, 0, 0),
+              padding: EdgeInsets.fromLTRB(33.85, 33.85, 26, 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [ Text(
+    '테콮',
+    style: TextStyle(
+    fontSize: 36,
+    fontWeight: FontWeight.w900
+    ),),
+    Align(
+      alignment: Alignment.centerRight,
+      child: Text(
+        "23 · ENTP",
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.w900,
+        ),
+      )
+    )
+    ],
+    ),
             ),
           ),
+
           bottomNavigationBar: BottomAppBar(
             child: Container(
             height: 66,
