@@ -9,7 +9,6 @@ class UI3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       appBar: AppBar(
         backgroundColor: Colors.white70,
         actions: [
@@ -63,7 +62,7 @@ class UI3 extends StatelessWidget {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('heart.png'),
-                          fit:BoxFit.none
+                          fit:BoxFit.cover
                         ),
                         //color: Colors.transparent,
                         borderRadius: BorderRadius.circular(30.0),
@@ -112,7 +111,7 @@ class UI3 extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage('dumbbell.png'),
-                          fit:BoxFit.none
+                          fit:BoxFit.cover
                       ),
                       borderRadius: BorderRadius.circular(30.0),
                     ),
@@ -149,7 +148,7 @@ class UI3 extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage('alcohol.png'),
-                          fit:BoxFit.none
+                          fit:BoxFit.cover
                       ),
                       borderRadius: BorderRadius.circular(30.0),
                     ),
@@ -206,78 +205,94 @@ class _CustomDialogState extends State<CustomDialog> {
   bool isChecked = false;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        // 흐릿한 배경
-        Positioned.fill(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-            child: Container(
-              // color: Colors.black.withOpacity(0.4),
-            ),
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        checkboxTheme: CheckboxThemeData(
+          fillColor: MaterialStateColor.resolveWith(
+                (states) {
+              if (states.contains(MaterialState.selected)) {
+                return Color(0xffFF5EFF); // Change this to your desired color
+              }
+              return Colors.blue; // Change this to your desired color
+            },
           ),
         ),
-        // 팝업 내용
-        AlertDialog(
-          backgroundColor: Colors.black.withOpacity(0.8),
-          title: Center(
-            child: Column(
+      ),
+      //체크박스 색상 변경
+      home: Stack(
+        alignment: Alignment.center,
+        children: [
+          // 흐릿한 배경
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              child: Container(
+                // color: Colors.black.withOpacity(0.4),
+              ),
+            ),
+          ),
+          // 팝업 내용
+          AlertDialog(
+            backgroundColor: Colors.black.withOpacity(0.8),
+            title: Center(
+              child: Column(
+                children: [
+                  Text(
+                    '플립-잇 3기',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    '<연애!> 에 참가할래?',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  '플립-잇 3기',
+                  '플립이 되면 알림을 보낼게',
                   style: TextStyle(color: Colors.white),
                 ),
-                Text(
-                  '<연애!> 에 참가할래?',
-                  style: TextStyle(color: Colors.white),
+                SizedBox(height: 20), // 간격 추가
+                CheckboxListTile( //검정 테두리 -> 하얀 테두리?!
+                  title: Text(
+                    '동의하기',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
                 ),
               ],
             ),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                '플립이 되면 알림을 보낼게',
-                style: TextStyle(color: Colors.white),
-              ),
-              SizedBox(height: 20), // 간격 추가
-              CheckboxListTile( //검정 테두리 -> 하얀 테두리?!
-                title: Text(
-                  '동의하기',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  '입장하기',
+                  style: TextStyle(color: Colors.white),
                 ),
-                value: isChecked,
-                onChanged: (bool? value) {
-                  setState(() {
-                    isChecked = value!;
-                  });
-                },
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  '닫기',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(
-                '입장하기',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(
-                '닫기',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
