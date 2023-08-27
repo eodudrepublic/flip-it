@@ -4,26 +4,24 @@ import 'package:flutter/material.dart';
 
 class UI3 extends StatelessWidget {
   const UI3({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white70,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            iconSize: 40,
-            color: Colors.black38,
-            icon: Icon(Icons.account_circle),
-          )
-        ],
-        leading: Icon(
-            size: 40,
-            color: Color(0xffFF5EFF),
-            Icons.style), //2안 - Icons.photo_filter
-      ),
+    backgroundColor: Colors.white70,
+    actions: [
+      IconButton(
+        onPressed: () {},
+        iconSize: 40,
+        color: Colors.black38,
+        icon: Icon(Icons.person_outline),)
+    ],
+    leading: Padding(
+    padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
+    child: Image.asset('images/appIcon1.png'),
+    ), //2안 - Icons.photo_filter
+    ),
       body: Container(
         margin: EdgeInsets.fromLTRB(0,29,0,0),
         child: SingleChildScrollView(
@@ -40,7 +38,6 @@ class UI3 extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-
                   height: 20,
                 ),
                 GestureDetector(
@@ -61,7 +58,7 @@ class UI3 extends StatelessWidget {
                       height: 170.0,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('heart.png'),
+                          image: AssetImage('images/heart.png'),
                           fit:BoxFit.cover
                         ),
                         //color: Colors.transparent,
@@ -70,6 +67,7 @@ class UI3 extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(40.0),
                         //child: Icons.navigate_next,
+
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -110,7 +108,7 @@ class UI3 extends StatelessWidget {
                     height: 150.0,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('dumbbell.png'),
+                          image: AssetImage('images/dumbbell.png'),
                           fit:BoxFit.cover
                       ),
                       borderRadius: BorderRadius.circular(30.0),
@@ -147,7 +145,7 @@ class UI3 extends StatelessWidget {
                     height: 150.0,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('alcohol.png'),
+                          image: AssetImage('images/glasses.png'),
                           fit:BoxFit.cover
                       ),
                       borderRadius: BorderRadius.circular(30.0),
@@ -235,6 +233,9 @@ class _CustomDialogState extends State<CustomDialog> {
           // 팝업 내용
           AlertDialog(
             backgroundColor: Colors.black.withOpacity(0.8),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0), // 원하는 모서리 반지름 설정
+            ),
             title: Center(
               child: Column(
                 children: [
@@ -275,18 +276,26 @@ class _CustomDialogState extends State<CustomDialog> {
               ],
             ),
             actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(
-                  '입장하기',
-                  style: TextStyle(color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0,0,36.0,16.0),
+                child: TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    '입장하기',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(
-                  '닫기',
-                  style: TextStyle(color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0,0,0,16.0),
+                child: TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    '닫기',
+                    style: TextStyle(color: Colors.white),
+
+                  ),
+
                 ),
               ),
             ],
