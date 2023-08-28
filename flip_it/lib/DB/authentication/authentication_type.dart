@@ -1,7 +1,6 @@
 enum AuthenticationType {
   signUp(true, true),
   emailSignIn(true, true),
-  updateEmail(true, false),
   updatePassword(false, true),
   resetPassword(false, true);
 
