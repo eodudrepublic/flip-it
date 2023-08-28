@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'ui4.dart';
-import 'ui3.dart';
-import 'ui1.dart';
 
 void main() {
-  runApp(MaterialApp(home:UI4()));
+  runApp(MaterialApp(home: UI4()));
 }
 
 class MyApp extends StatelessWidget {
