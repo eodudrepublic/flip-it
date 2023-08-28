@@ -1,8 +1,10 @@
+import 'package:flip_it/DB/authentication/authentication_type.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logger/logger.dart';
 import 'DB/firebase_options.dart';
+import 'UI/firebase_auth_input_screen.dart';
 import 'UI/test.dart';
 
 Logger logger = Logger();
@@ -20,8 +22,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: LogInTest(),
+    return MaterialApp(
+      home: FirebaseAuthInPutScreen(type:AuthenticationType.signUp),
     );
   }
 }
