@@ -10,7 +10,7 @@ class UI1 extends StatefulWidget {
 
 class _UI1State extends State<UI1> {
   final formKey = GlobalKey<FormState>();
-  TextEditingController _controller_name = TextEditingController();
+  TextEditingController _controller_ideal = TextEditingController();
   TextEditingController _controller_age = TextEditingController();
   TextEditingController _controller_MBTI = TextEditingController();
   bool _hasError = false;
@@ -45,14 +45,14 @@ class _UI1State extends State<UI1> {
               Image.asset(
                 'assets/images/logo.png',
                 width: MediaQuery.of(context).size.width * 0.15,
-                height: MediaQuery.of(context).size.height * 0.15,
+                height: MediaQuery.of(context).size.height * 0.08,
                 fit: BoxFit.contain, // 이미지가 컨테이너 안에 맞게 들어감
               ),
               Text(
-                "플립-잇에 온 걸 환영해!",
+                "<연애!>에 온 걸 환영해!",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: MediaQuery.of(context).size.width * 0.05,
+                  fontSize: MediaQuery.of(context).size.width * 0.035,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -60,77 +60,31 @@ class _UI1State extends State<UI1> {
                 "포스티잇 앞면에 보여질 기본 정보야.",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: MediaQuery.of(context).size.width * 0.04,
+                  fontSize: MediaQuery.of(context).size.width * 0.03,
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8, // 너비 설정
-                height: MediaQuery.of(context).size.height * 0.42, // 높이 설정
+                height: MediaQuery.of(context).size.height * 0.375, // 높이 설정
                 decoration: BoxDecoration(
                   color: Colors.yellow[700], // 노란색 배경
                   borderRadius: BorderRadius.circular(50.0), // 둥근 테두리
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: EdgeInsets.all(30.0),
                   child: Center(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.65, // 너비 설정
-                          height: MediaQuery.of(context).size.height * 0.06, // 높이 설정
-                          child: TextFormField(
-                            controller: _controller_name,
-                            keyboardType: TextInputType.text,
-                            textInputAction: TextInputAction.next,
-                            validator: (value) {
-                              if (_hasError) return null;
-                              if (value == null || value.isEmpty) {
-                                setState(() {
-                                  _hasError = true;
-                                });
-                                return "닉네임을 입력해줘!!";
-                              }
-                              if (value.length < 2) {
-                                setState(() {
-                                  _hasError = true;
-                                });
-                                return "닉네임이 너무 짧아!!";
-                              }
-                              if (value.length > 15) {
-                                setState(() {
-                                  _hasError = true;
-                                });
-                                return "닉네임이 너무 길어!!";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              hintText: "닉네임을 지어줘",
-                              hintStyle: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 20.0),
-                              fillColor: Colors.white,
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.65, // 너비 설정
-                          height: MediaQuery.of(context).size.height * 0.06, // 높이 설정
+                          width:
+                              MediaQuery.of(context).size.width * 0.65, // 너비 설정
+                          height: MediaQuery.of(context).size.height *
+                              0.05, // 높이 설정
                           child: TextFormField(
                             controller: _controller_age,
                             keyboardType: TextInputType.number,
@@ -166,9 +120,10 @@ class _UI1State extends State<UI1> {
                             decoration: InputDecoration(
                               hintText: "나이는?",
                               hintStyle: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                              ),
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03),
                               contentPadding:
                                   EdgeInsets.symmetric(horizontal: 20.0),
                               fillColor: Colors.white,
@@ -181,65 +136,13 @@ class _UI1State extends State<UI1> {
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: MediaQuery.of(context).size.height * 0.015,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.65, // 너비 설정
-                          height: MediaQuery.of(context).size.height * 0.06, // 높이 설정
-                          child: TextFormField(
-                            keyboardType: TextInputType.number,
-                            textInputAction: TextInputAction.next,
-                            validator: (value) {
-                              if (_hasError) return null;
-                              if (value == null || value.isEmpty) {
-                                setState(() {
-                                  _hasError = true;
-                                });
-                                return "키를 입력해줘!!";
-                              }
-
-                              int? number = int.tryParse(value);
-                              if (number == null) {
-                                setState(() {
-                                  _hasError = true;
-                                });
-                                return "키를 입력해줘!!";
-                              }
-                              if (number < 100 || number > 280) {
-                                setState(() {
-                                  _hasError = true;
-                                });
-                                return "제대로 키를 입력해줘!!";
-                              }
-                              return null;
-                            },
-                            inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                  RegExp(r'[0-9\d]')),
-                            ],
-                            decoration: InputDecoration(
-                              hintText: "키는?",
-                              hintStyle: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 20.0),
-                              fillColor: Colors.white,
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.65, // 너비 설정
-                          height: MediaQuery.of(context).size.height * 0.06, // 높이 설정
+                          width:
+                              MediaQuery.of(context).size.width * 0.65, // 너비 설정
+                          height: MediaQuery.of(context).size.height *
+                              0.05, // 높이 설정
                           child: TextFormField(
                             controller: _controller_MBTI,
                             keyboardType: TextInputType.text,
@@ -295,9 +198,10 @@ class _UI1State extends State<UI1> {
                             decoration: InputDecoration(
                               hintText: "MBTI 를 말해줘",
                               hintStyle: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                              ),
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03),
                               contentPadding:
                                   EdgeInsets.symmetric(horizontal: 20.0),
                               fillColor: Colors.white,
@@ -310,22 +214,73 @@ class _UI1State extends State<UI1> {
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: MediaQuery.of(context).size.height * 0.015,
+                        ),
+                        Container(
+                          width:
+                              MediaQuery.of(context).size.width * 0.65, // 너비 설정
+                          height: MediaQuery.of(context).size.height *
+                              0.05, // 높이 설정
+                          child: TextFormField(
+                            controller: _controller_ideal,
+                            keyboardType: TextInputType.text,
+                            textInputAction: TextInputAction.done,
+                            validator: (value) {
+                              if (_hasError) return null;
+                              if (value == null || value.isEmpty) {
+                                setState(() {
+                                  _hasError = true;
+                                });
+                                return "MBTI를 입력해줘!!";
+                              }
+                              if (value.length < 20 || value.length > 5) {
+                                setState(() {
+                                  _hasError = true;
+                                });
+                                return "5글자는 입력해줘!!ㅠ";
+                              }
+                            },
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'[a-zA-Z\d]')),
+                            ],
+                            decoration: InputDecoration(
+                              hintText: "너의 이상형에 대해 설명해줘! ex. 영화같이 몰아볼 다정한 사람",
+                              hintStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03),
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 20.0),
+                              fillColor: Color(0xFFFF5EFF),
+                              filled: true,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.015,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              width: MediaQuery.of(context).size.width * 0.3, // 버튼의 너비
-                              height: MediaQuery.of(context).size.height * 0.06, // 버튼의 높이
+                              width: MediaQuery.of(context).size.width *
+                                  0.3, // 너비 설정
+                              height: MediaQuery.of(context).size.height * 0.05,
                               child: customRadio("남자", 0),
                             ),
                             SizedBox(
                               width: 20,
                             ),
                             Container(
-                              width: MediaQuery.of(context).size.width * 0.3, // 버튼의 너비
-                              height: MediaQuery.of(context).size.height * 0.06, // 버튼의 높이
+                              width: MediaQuery.of(context).size.width *
+                                  0.3, // 너비 설정
+                              height: MediaQuery.of(context).size.height * 0.05,
                               child: customRadio("여자", 1),
                             ),
                           ],
@@ -335,6 +290,17 @@ class _UI1State extends State<UI1> {
                   ),
                 ),
               ),
+              SizedBox(
+                  height: 30,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '사람들이 보게 될 포스트잇이야!',
+                        style: TextStyle(color: Colors.white),
+                      )
+                    ],
+                  )),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8, // 너비 설정
                 height: MediaQuery.of(context).size.height * 0.2, // 높이 설정
@@ -343,65 +309,80 @@ class _UI1State extends State<UI1> {
                   borderRadius: BorderRadius.circular(50.0), // 둥근 테두리
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.05,
-                          child: TextFormField(
-                            enabled: false, // true 하면 수정됨!
-                            controller: _controller_name,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: MediaQuery.of(context).size.width * 0.08,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            decoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 20.0),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Spacer(),
-                            SizedBox(
-                              width: 70,
-                              child: TextField(
-                                textAlign: TextAlign.center,
-                                enabled: false, // true 하면 수정됨!
-                                controller: _controller_age,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 25.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              "-",
-                              textAlign: TextAlign.center,
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 60,
+                            height: 25,
+                            child: TextField(
+                              textAlign: TextAlign.left,
+                              enabled: false,
+                              // true 하면 수정됨!
+                              controller: _controller_age,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 25.0,
                                 fontWeight: FontWeight.bold,
                               ),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
                             ),
-                            SizedBox(
-                              width: 100,
-                              child: TextField(
-                                textAlign: TextAlign.center,
-                                enabled: false, // true 하면 수정됨!
-                                controller: _controller_MBTI,
+                          ),
+                          Text(
+                            "·",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 100,
+                            height: 25,
+                            child: TextField(
+                              textAlign: TextAlign.center,
+                              enabled: false,
+                              // true 하면 수정됨!
+                              controller: _controller_MBTI,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        width: 340.0,
+                        height: 50.0,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFF5EFF),
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextField(
+                                textAlign: TextAlign.left,
+                                enabled: false,
+                                // true 하면 수정됨!
+                                controller: _controller_ideal,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 25.0,
@@ -412,47 +393,17 @@ class _UI1State extends State<UI1> {
                                     borderSide: BorderSide.none,
                                   ),
                                 ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          width: 340.0,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFFF5EFF),
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "ex. 나 엔팁임",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 0.8,
-                                  ),
-                                ),
-                                Text(
-                                    "내 포스트잇이 제일눈에 띄도록\n나를 가장 잘 소개하는 한 줄을 적을거야.",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    )),
-                              ],
-                            ),
+                              )
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: MediaQuery.of(context).size.height * 0.015,
               ),
               ElevatedButton(
                 onPressed: _submit,
@@ -513,13 +464,13 @@ class _UI1State extends State<UI1> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0)),
             side: BorderSide(
-                color: selectedIndex == index ? Colors.cyan : Colors.black),
+                color: selectedIndex == index ? Colors.cyan : Colors.white),
             backgroundColor: Colors.white),
         child: Text(
           txt,
           style: TextStyle(
             color: selectedIndex == index ? Colors.cyan : Colors.black,
-            fontSize: 20.0,
+            fontSize: MediaQuery.of(context).size.width * 0.03,
             fontWeight: FontWeight.bold,
           ),
         ),
