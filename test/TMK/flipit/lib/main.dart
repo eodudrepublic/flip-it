@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'ui1.dart';
 import 'ui4.dart';
-
+import 'tapview.dart';
+import 'tabview2.dart';
 void main() {
   runApp(MaterialApp(home: UI4()));
 }
