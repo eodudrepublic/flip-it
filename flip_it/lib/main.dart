@@ -4,7 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logger/logger.dart';
 import 'DB/firebase_options.dart';
-import 'UI/firebase_auth_input_screen.dart';
+import 'UI/Screen/firebase_authentication_screen.dart';
+import 'UI/_core/app_size.dart';
 import 'UI/test.dart';
 
 Logger logger = Logger();
@@ -22,8 +23,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: FirebaseAuthInPutScreen(type:AuthenticationType.signUp),
+    size = MediaQuery.of(context).size;
+    return const MaterialApp(
+      home: FirebaseAuthenticationScreen(),
     );
   }
 }
