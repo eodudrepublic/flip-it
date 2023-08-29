@@ -217,14 +217,12 @@ class _UI5State extends State<UI5> {
                               ),
                             ),
                           ],
-
                         ),
                       ),
                     ),
                 )]
             )
           )
-
         ),
 
       bottomNavigationBar: BottomAppBar(
