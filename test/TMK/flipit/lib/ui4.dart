@@ -86,7 +86,7 @@ class _UI4State extends State<UI4> {
                     width: screenWidth * 0.85,
                     height: screenHeight * 0.4,
                     margin: EdgeInsets.symmetric(vertical:15.0),
-                    padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                    padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
                     child: Padding(
                       padding:  EdgeInsets.all(30.0),
                         child: Center(
@@ -99,15 +99,15 @@ class _UI4State extends State<UI4> {
                                 child: Text(
                                 '23 · ENTP',
                                 style: TextStyle(
-                                    fontSize: 28 * fontScaleFactor,
+                                    fontSize: screenWidth * 0.05,
                                     fontWeight: FontWeight.w900),
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 40.0),
+                                margin: EdgeInsets.symmetric(vertical:30.0),
                                 padding: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
-                                width: containerWidth * 0.75,
-                                height: containerHeight * 0.11,
+                                width: containerWidth * 0.8,
+                                height: containerHeight * 0.12,
                                 decoration: BoxDecoration(
                                   color: Color(0xFFFF5EFF),
                                   borderRadius: BorderRadius.circular(30.0),
@@ -121,7 +121,7 @@ class _UI4State extends State<UI4> {
                                         "👀 영화 몰아보는 거 좋아하고 의사 표현을 지혜롭게 하는 사람",
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 16 * fontScaleFactor,
+                                          fontSize: screenWidth*0.03,
                                           fontWeight: FontWeight.bold,
                                           letterSpacing: 0.8,
                                         ),
@@ -137,7 +137,7 @@ class _UI4State extends State<UI4> {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.transparent,
                                   shadowColor: Colors.transparent,
-                                  elevation: 0,
+                                  elevation: 0.0,
                                 ),
                                 child: Container(
                                       margin: EdgeInsets.symmetric(vertical: 7.0),
@@ -153,11 +153,11 @@ class _UI4State extends State<UI4> {
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text( //margin 으로 바뀌고 textformfield로 바꿔야함
+                                              Text(
                                                 "뒷면 보기",
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 12 * fontScaleFactor,
+                                                  fontSize: screenWidth * 0.025,
                                                   fontWeight: FontWeight.bold,
                                                   letterSpacing: 0.8,
                                                 ),
@@ -203,19 +203,19 @@ class _UI4State extends State<UI4> {
                                       height: screenHeight * 0.07,
                                     ),*/
                                     Text(
-                                      '플립 스코어: ',
+                                      'Flip Score: ',
                                       style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18 * fontScaleFactor,
+                                        color: Color(0xFFFF5EFF),
+                                        fontSize: screenWidth * 0.0395,
                                         fontWeight: FontWeight.bold,
                                         letterSpacing: 0.8,
                                       ),
                                     ),
                                     Text(
-                                      '33 회', //서버 데이터
+                                      '33회', //서버 데이터
                                       style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18 * fontScaleFactor,
+                                        color: Color(0xFFFF5EFF),
+                                        fontSize: screenWidth * 0.035,
                                         fontWeight: FontWeight.bold,
                                         letterSpacing: 0.8,
                                       ),
@@ -234,7 +234,7 @@ class _UI4State extends State<UI4> {
                                         '내가 플립한',
                                         style: TextStyle(
                                           color: Colors.black,
-                                          fontSize: 16 * fontScaleFactor,
+                                          fontSize: screenWidth * 0.03,
                                           fontWeight: FontWeight.bold,
                                           letterSpacing: 0.8,
                                         ),
@@ -245,7 +245,7 @@ class _UI4State extends State<UI4> {
                                       '|',
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 16 * fontScaleFactor,
+                                        fontSize: screenWidth * 0.03,
                                         fontWeight: FontWeight.bold,
                                         letterSpacing: 0.8,
                                       ),
@@ -258,7 +258,7 @@ class _UI4State extends State<UI4> {
                                           '나를 플립한',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 16 * fontScaleFactor,
+                                            fontSize: screenWidth * 0.03,
                                             fontWeight: FontWeight.bold,
                                             letterSpacing: 0.8,
                                           ),
