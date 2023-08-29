@@ -1,6 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'ui5.dart';
+
 class  UI4 extends StatefulWidget {
   const  UI4({super.key});
 
@@ -132,6 +133,10 @@ class _UI4State extends State<UI4> {
                               ),
                               ElevatedButton(
                                 onPressed: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => UI5()),
+                                  );
                                   },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0xFFE0E0E0), // 버튼 배경색
