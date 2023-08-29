@@ -132,42 +132,26 @@ class _UI4State extends State<UI4> {
                               ),
                               ElevatedButton(
                                 onPressed: (){
-
                                   },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.transparent,
-                                  shadowColor: Colors.transparent,
-                                  elevation: 0.0,
-                                ),
-                                child: Container(
-                                      margin: EdgeInsets.symmetric(vertical: 7.0),
-                                      padding: EdgeInsets.all(5.0),
-                                      width: screenWidth * 0.2,
-                                      height: screenHeight * 0.05,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFE0E0E0),
-                                        borderRadius: BorderRadius.circular(15.0),
-                                      ),
-                                      child: Center(
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "뒷면 보기",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: screenWidth * 0.025,
-                                                  fontWeight: FontWeight.bold,
-                                                  letterSpacing: 0.8,
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                      )
+                                  backgroundColor: Color(0xFFE0E0E0), // 버튼 배경색
+                                  foregroundColor: Colors.white, // 텍스트 색상
+                                  elevation: 0, // 그림자 크기
+                                  padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0), // 내부 여백
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),// 버튼 모서리 둥글기
                                   ),
+                                ),
+                                child: Text(
+                                  "뒷면 보기",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: screenWidth * 0.025,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 0.8,
+                                  ),
+                                ),
                               ),
-
                             ]
                           ),
                         ),

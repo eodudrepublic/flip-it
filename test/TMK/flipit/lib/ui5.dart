@@ -22,7 +22,7 @@ class _UI5State extends State<UI5> {
 
 
     double containerWidth = screenWidth;
-    double containerHeight = screenWidth/targetAspectRatio;
+    double containerHeight = screenWidth;
 
     if (containerHeight > screenHeight) {
       containerHeight = screenHeight;
@@ -63,7 +63,7 @@ class _UI5State extends State<UI5> {
                       borderRadius: BorderRadius.circular(60.0)
                     ),
                     width: screenWidth * 0.85,
-                    height: screenHeight * 0.85,
+                    height: screenHeight * 0.8,
                     margin: EdgeInsets.symmetric(vertical:15.0),
                     padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                     child: Padding(
@@ -74,17 +74,145 @@ class _UI5State extends State<UI5> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Align(
-                              child: Text(
-                                '164cm',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: screenWidth * 0.08,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.8,
-                                )
+                              alignment: Alignment.topLeft,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      '📏\n164cm',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: screenWidth * 0.035,
+                                        fontWeight: FontWeight.normal,
+                                        letterSpacing: 0.8,
+                                      )
+                                  ),
+                                  Text(
+                                      '체형 보통',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: screenWidth * 0.035,
+                                        fontWeight: FontWeight.normal,
+                                        letterSpacing: 0.8,
+                                      )
+                                  ),
+                                  SizedBox(height: 30.0),
+                                  Text(
+                                      '🎨\n야구랑 바다 보러 가는 거 좋아함.',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: screenWidth * 0.035,
+                                        fontWeight: FontWeight.normal,
+                                        letterSpacing: 0.8,
+                                      )
+                                  ),
+                                  SizedBox(height: 30.0),
+                                  Row(
+                                    children: [
+                                      Text(
+                                      '💗\n다투고 난 후엔 ',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: screenWidth * 0.035,
+                                          fontWeight: FontWeight.normal,
+                                          letterSpacing: 0.8,
+                                        )
+                                      ),
+                                      Text(
+                                        '\n시간 두고 얘기',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: screenWidth * 0.035,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 0.8,
+                                        )
+                                      )
+                                    ]
+                                  ),
+                                  Row(
+                                      children: [
+                                        Text(
+                                            '개인 시간은 ',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: screenWidth * 0.035,
+                                              fontWeight: FontWeight.normal,
+                                              letterSpacing: 0.8,
+                                            )
+                                        ),
+                                        Text(
+                                            '필요로 함',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: screenWidth * 0.035,
+                                              fontWeight: FontWeight.bold,
+                                              letterSpacing: 0.8,
+                                            )
+                                        )
+                                      ]
+                                  ),
+                                  Row(
+                                      children: [
+                                        Text(
+                                            '자율성은 ',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: screenWidth * 0.035,
+                                              fontWeight: FontWeight.normal,
+                                              letterSpacing: 0.8,
+                                            )
+                                        ),
+                                        Text(
+                                            '보통',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: screenWidth * 0.035,
+                                              fontWeight: FontWeight.bold,
+                                              letterSpacing: 0.8,
+                                            )
+                                        )
+                                      ]
+                                  ),
+                                  SizedBox(height: 30.0),
+                                  Text('🚬\n비흡연 ',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: screenWidth * 0.035,
+                                        fontWeight: FontWeight.normal,
+                                        letterSpacing: 0.8,
+                                      )
+                                  ),
+                                ],
                               )
-                            )
-                          ]
+                            ),
+                            SizedBox(height:150.0),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: ElevatedButton(
+                                onPressed: (){
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color(0xFFE0E0E0), // 버튼 배경색
+                                  foregroundColor: Colors.white, // 텍스트 색상
+                                  elevation: 0, // 그림자 크기
+                                  padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0), // 내부 여백
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),// 버튼 모서리 둥글기
+                                  ),
+                                ),
+                                child: Text(
+                                  "닫기",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: screenWidth * 0.025,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 0.8,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+
                         ),
                       ),
                     ),
@@ -108,12 +236,4 @@ class _UI5State extends State<UI5> {
       ),
     );
   }
-}
-
-void main(){
-  runApp(
-    MaterialApp(
-      home
-    )
-  )
 }
