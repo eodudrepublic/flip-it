@@ -5,8 +5,8 @@ import 'package:flip_it/DB/authentication/authentication_type.dart';
 import 'package:flip_it/DB/authentication/firebase_auth_event.dart';
 import 'package:flip_it/DB/authentication/firebase_auth_state.dart';
 import 'package:flip_it/DB/authentication/firebase_auth_bloc.dart';
-import 'package:flip_it/UI/Screen/firebase_auth_input_screen.dart';
-import 'package:flip_it/UI/_core/app_size.dart';
+import 'package:flip_it/UI/firebase_auth_input_screen.dart';
+import 'package:flip_it/_core/app_size.dart';
 
 class FirebaseAuthenticationScreen extends StatelessWidget {
   const FirebaseAuthenticationScreen({super.key});

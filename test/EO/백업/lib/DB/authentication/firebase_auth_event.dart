@@ -15,6 +15,27 @@ class AuthSignOut extends FirebaseAuthEvent {
   List<Object?> get props => [isGoogle];
 }
 
+class AuthSignInWithAnonymouse extends FirebaseAuthEvent {}
+
+class AuthSignInWithGoogle extends FirebaseAuthEvent {}
+
+class AuthSignInWithPhoneNumber extends FirebaseAuthEvent {
+  final String number;
+  AuthSignInWithPhoneNumber(this.number);
+  @override
+  List<Object?> get props => [number];
+}
+
+class AuthPhoneSignInSmsCode extends FirebaseAuthEvent {
+  final BuildContext context;
+  final String number;
+  final String verificationId;
+
+  AuthPhoneSignInSmsCode(this.context, this.number, this.verificationId);
+  @override
+  List<Object?> get props => [context, number, verificationId];
+}
+
 class AuthSignInWithEmailAndPassword extends FirebaseAuthEvent {
   final BuildContext context;
   final String email;
@@ -38,6 +59,15 @@ class AuthSignUpWithEmailAndPassword extends FirebaseAuthEvent {
 class AuthVerifySendEmail extends FirebaseAuthEvent {}
 
 class AuthResetPasswordSendEmail extends FirebaseAuthEvent {}
+
+class AuthChangedEmailUpdate extends FirebaseAuthEvent {
+  final BuildContext context;
+  final String email;
+
+  AuthChangedEmailUpdate(this.context, this.email);
+  @override
+  List<Object?> get props => [context, email];
+}
 
 class AuthChangedPasswordUpdate extends FirebaseAuthEvent {
   final BuildContext context;

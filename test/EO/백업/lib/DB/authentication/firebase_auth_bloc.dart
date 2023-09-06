@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flip_it/DB/authentication/authentication_type.dart';
 import 'package:flip_it/DB/authentication/firebase_auth_event.dart';
 import 'package:flip_it/DB/authentication/firebase_auth_state.dart';
-import '../../main.dart';
+import 'package:flip_it/main.dart';
 
 class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
