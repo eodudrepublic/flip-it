@@ -90,11 +90,11 @@ class _UI4State extends State<UI4> {
                       borderRadius: BorderRadius.circular(50.0),
                    ),
                     width: screenWidth * 0.85,
-                    height: screenHeight * 0.3,
-                    margin: EdgeInsets.symmetric(vertical:screenHeight * 0.02),
-                    padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                    height: 235,//포스트잇 세로 길이는 screenHeight * 0.33,
+                    margin: EdgeInsets.symmetric(vertical:screenHeight * 0.03),
+                    padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 2.0),
                     child: Padding(
-                      padding: EdgeInsets.all(20.0),
+                      padding: EdgeInsets.all(15.0),
                         child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -144,7 +144,7 @@ class _UI4State extends State<UI4> {
                                   );
                                   },
                                 style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(screenWidth*0.04, screenHeight*0.008),
+                                  //fixedSize: Size(screenWidth*0.05, screenHeight*0.008),
                                   backgroundColor: Color(0xFFE0E0E0), // 버튼 배경색
                                   foregroundColor: Color(0xFF7D7D7D), // 텍스트 색상
                                   elevation: 0, // 그림자 크기
@@ -177,7 +177,7 @@ class _UI4State extends State<UI4> {
                       borderRadius: BorderRadius.circular(50.0),
                     ),
                     width: screenWidth * 0.85,
-                    height: screenHeight * 0.37,
+                    height: 260,
                     padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                     child: Padding(
                       padding: EdgeInsets.all(0.0),
@@ -216,55 +216,8 @@ class _UI4State extends State<UI4> {
                                   ],
                                 ),
                                 SizedBox(height:screenHeight*0.0023),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children:[
-                                    TextButton(
-                                      //enabled: true,
-                                      onPressed: (){
-                                        _changeTextStyle();
-                                        toggleTab1();
-                                      },
-                                      child: Text(
-                                        '내가 플립한',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: screenWidth * 0.032,
-                                          fontWeight: FontWeight.bold,
-                                          letterSpacing: 0.8,
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      '|',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: screenWidth * 0.03,
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 0.8,
-                                      ),
-                                    ),
-                                    TextButton(
-                                        onPressed: (){
-                                          _changeTextStyle();
-                                          setState(() {
-                                            //updateContainerList();
-                                          });
-                                        },
-                                        child: Text(
-                                          '나를 플립한',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: screenWidth * 0.032,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.8,
-                                        ),
-                                        )
-                                    ),
-                                  ],
-                                ),
-                                if(showAlternateTab)
-                                  ContainerSlider(),
+                                ContainerSlider(),
+
                                 //ContainerSlider(),
                                 ]
                         ),
@@ -292,39 +245,25 @@ class _UI4State extends State<UI4> {
     );
   }
 }
-class ResponsiveButton extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
-    final double targetAspectRatio = 9/16;
-    double containerWidth = screenWidth;
-    double containerHeight = screenWidth/ targetAspectRatio;
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        double buttonWidth = constraints.maxWidth * 0.4;
-        double buttonHeight = buttonWidth * 0.3;
-
-        return Container(
-          width: buttonWidth,
-          height: buttonHeight,
-          child: ElevatedButton(
-            onPressed: () {},
-            child: Text('버튼'),
-          ),
-        );
-      },
-    );
-  }
-}
 
 class ContainerSlider extends StatefulWidget{
   @override
   _ContainerSliderState createState() => _ContainerSliderState();
 }
 class _ContainerSliderState extends State<ContainerSlider> {
+  int _currentCarousel= 0; //default
+  bool isSelectedCarousel1 = false;
+  bool isSelectedCarousel2 = false;
+
   @override
+  void initState() {
+    super.initState();
+
+    // Perform the initial setup when the widget is first created
+    isSelectedCarousel1 = _currentCarousel == 0;
+    isSelectedCarousel2 = _currentCarousel == 1;
+  }
+
   Widget build(BuildContext context){
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -333,7 +272,7 @@ class _ContainerSliderState extends State<ContainerSlider> {
     double containerWidth = screenWidth;
     double containerHeight = screenWidth/ targetAspectRatio;
 
-    List<Widget> containerList = [ // 뒷면 보기 버튼 없이 포스트잇 아무데나 누르면 뒷면이 뜨도록?
+    List<Widget> containerList1 = [ // 뒷면 보기 버튼 없이 포스트잇 아무데나 누르면 뒷면이 뜨도록?
     Container(
       margin: EdgeInsets.fromLTRB(0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
       padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
@@ -536,7 +475,7 @@ class _ContainerSliderState extends State<ContainerSlider> {
                               "👀 나나나",
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: screenWidth*0.025,
+                                fontSize: screenWidth * 0.025,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 0.8,
                               ),
@@ -551,203 +490,329 @@ class _ContainerSliderState extends State<ContainerSlider> {
         ),
       ),
   ];
-  return CarouselSlider(
-    options: CarouselOptions(
-      autoPlay: false,
-      //aspectRatio: 16 / 9,
-      enlargeCenterPage: true,
-    ),
-    items: containerList.map((container) {
-      return Builder(
-        builder: (BuildContext context) {
-          return Container(
-            width: MediaQuery.of(context).size.width * 0.7,
-            height: MediaQuery.of(context).size.height,
-            margin: EdgeInsets.symmetric(horizontal: 5.0),
-            child: container,
-          );
-        },
-      );
-    }).toList(),
-  );
+    List<Widget> containerList2 = [ // 뒷면 보기 버튼 없이 포스트잇 아무데나 누르면 뒷면이 뜨도록?
+      Container(
+        margin: EdgeInsets.fromLTRB(0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
+        padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+        width: containerWidth * 0.75,
+        height: containerHeight * 0.3,
+        decoration: BoxDecoration(
+          color: Color(0xffFEC200),
+          borderRadius: BorderRadius.circular(40.0),
+        ),
+        child: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  '23 · ENFJ',
+                  style: TextStyle(
+                    fontSize: screenWidth * 0.035,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                SizedBox(height:screenHeight*0.002),
+                Container(
+                    margin: EdgeInsets.symmetric(vertical:screenHeight*0.01),
+                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                    width: screenWidth * 0.8,
+                    height: screenHeight * 0.07,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[600],
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "👀 ㄴㄴ",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: screenWidth*0.025,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.8,
+                              ),
+                            ),
+                          ],
+                        )
+                    )
+                ),
 
-  // 클릭 이벤트에 따라 containerList를 업데이트하는 함수
-  void updateContainerList() {
-    setState(() {
-      // 클릭 이벤트에 따라 새로운 containerList를 만듭니다.
-      containerList = [
-        // 새로운 상태의 containerList
-        // 여기에 새로운 위젯들을 넣어주세요.
-        Container(
-          margin: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 40.0),
-          padding: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 0.0),
-          width: 210,//containerWidth * 0.75,
-          height: 100,//containerHeight * 0.225,
-          decoration: BoxDecoration(
-            color:  Colors.grey,
-            borderRadius: BorderRadius.circular(40.0),
-          ),
-          child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical:8.0),
-                    child: Text(
-                      '23 · INFJ',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ),
-                  Container(
-                      margin: EdgeInsets.symmetric(vertical:10.0),
-                      padding: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
-                      width: 180,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFF5EFF),
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text( //margin 으로 바뀌고 textformfield로 바꿔야함
-                                "👀 난난나ㅏ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10.0,//screenWidth*0.03,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.8,
-                                ),
-                              ),
-                            ],
-                          )
-                      )
-                  ),
-                ]
-            ),
+              ]
           ),
         ),
-        Container(
-          margin: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 40.0),
-          padding: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 0.0),
-          width: 210,//containerWidth * 0.75,
-          height: 100,//containerHeight * 0.225,
-          decoration: BoxDecoration(
-            color:  Colors.grey,
-            borderRadius: BorderRadius.circular(40.0),
-          ),
-          child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical:8.0),
-                    child: Text(
-                      '23 · INTP',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ),
-                  Container(
-                      margin: EdgeInsets.symmetric(vertical:10.0),
-                      padding: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
-                      width: 180,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFF5EFF),
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text( //margin 으로 바뀌고 textformfield로 바꿔야함
-                                "👀 랄라ㅏㄹ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10.0,//screenWidth*0.03,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.8,
-                                ),
-                              ),
-                            ],
-                          )
-                      )
-                  ),
-                ]
-            ),
-          ),
+      ),
+      Container(
+        margin: EdgeInsets.fromLTRB(0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
+        padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+        width: containerWidth * 0.75,
+        height: containerHeight * 0.2,
+        decoration: BoxDecoration(
+          color: Color(0xffFEC200),
+          borderRadius: BorderRadius.circular(40.0),
         ),
-        Container(
-          margin: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 40.0),
-          padding: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 0.0),
-          width: 210,//containerWidth * 0.75,
-          height: 100,//containerHeight * 0.225,
-          decoration: BoxDecoration(
-            color:  Colors.grey,
-            borderRadius: BorderRadius.circular(40.0),
-          ),
-          child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical:8.0),
-                    child: Text(
-                      '24 · ENTJ',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w900,
-                      ),
+        child: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  '23 · INFJ',
+                  style: TextStyle(
+                    fontSize: screenWidth * 0.035,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                SizedBox(height:screenHeight*0.002),
+                Container(
+                    margin: EdgeInsets.symmetric(vertical:screenHeight*0.01),
+                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                    width: screenWidth * 0.8,
+                    height: screenHeight * 0.07,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[600],
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
-                  ),
-                  Container(
-                      margin: EdgeInsets.symmetric(vertical:10.0),
-                      padding: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
-                      width: 180,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFF5EFF),
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text( //margin 으로 바뀌고 textformfield로 바꿔야함
-                                "👀 룰루",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10.0,//screenWidth*0.03,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.8,
-                                ),
+                    child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "👀 눈누",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: screenWidth*0.025,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.8,
                               ),
-                            ],
-                          )
-                      )
-                  ),
-                ]
-            ),
-          ),
-        ),
+                            ),
+                          ],
+                        )
+                    )
+                ),
 
-      ];
-    });
+              ]
+          ),
+        ),
+      ),
+      Container(
+        margin: EdgeInsets.fromLTRB(0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
+        padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+        width: containerWidth * 0.75,
+        height: containerHeight * 0.2,
+        decoration: BoxDecoration(
+          color: Color(0xffFEC200),
+          borderRadius: BorderRadius.circular(40.0),
+        ),
+        child: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  '23 · INTP',
+                  style: TextStyle(
+                    fontSize: screenWidth * 0.035,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                SizedBox(height:screenHeight*0.002),
+                Container(
+                    margin: EdgeInsets.symmetric(vertical:screenHeight*0.01),
+                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                    width: screenWidth * 0.8,
+                    height: screenHeight * 0.07,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[600],
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "👀 난나",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: screenWidth*0.025,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.8,
+                              ),
+                            ),
+                          ],
+                        )
+                    )
+                ),
+
+              ]
+          ),
+        ),
+      ),
+      Container(
+        margin: EdgeInsets.fromLTRB(0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
+        padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+        width: containerWidth * 0.75,
+        height: containerHeight * 0.2,
+        decoration: BoxDecoration(
+          color: Color(0xffFEC200),
+          borderRadius: BorderRadius.circular(40.0),
+        ),
+        child: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  '23 · ENTJ',
+                  style: TextStyle(
+                    fontSize: screenWidth * 0.035,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                SizedBox(height:screenHeight*0.002),
+                Container(
+                    margin: EdgeInsets.symmetric(vertical:screenHeight*0.01),
+                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                    width: screenWidth * 0.8,
+                    height: screenHeight * 0.07,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[600],
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "👀 나나나",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: screenWidth * 0.025,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.8,
+                              ),
+                            ),
+                          ],
+                        )
+                    )
+                ),
+
+              ]
+          ),
+        ),
+      ),
+    ];
+
+    return Column(
+      children:[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children:[
+            TextButton(
+              //enabled: true,
+              onPressed: (){
+                setState((){
+                  _currentCarousel = 0;
+                  isSelectedCarousel1 = true;
+                  isSelectedCarousel2 = false;
+                });
+              },
+              /*style : isSelectedCarousel1
+                  ? TextButton.styleFrom(
+                textStyle: TextStyle(
+
+                ),
+              ) : null,*/
+              child: Text(
+                '내가 플립한',
+                style: TextStyle(
+                  color: isSelectedCarousel1 ? Color(0xFFFF5EFF) : Colors.black, //덮어쓰지 않게
+                  fontSize: screenWidth * 0.032,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.8,
+                ),
+              ),
+            ),
+            Text(
+              '|',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: screenWidth * 0.03,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.8,
+              ),
+            ),
+            TextButton(
+                onPressed: (){
+                  setState(() {
+                    _currentCarousel = 1;
+                    isSelectedCarousel1 = false;
+                    isSelectedCarousel2 = true;
+                  });
+                },
+                /*style : isSelectedCarousel1
+                  ? TextButton.styleFrom(
+                textStyle: TextStyle(
+
+                ),
+              ) : null,*/
+                child: Text(
+                  '나를 플립한',
+                  style: TextStyle(
+                    color: isSelectedCarousel2 ? Color(0xFFFF5EFF) : Colors.black,
+                    fontSize: screenWidth * 0.032,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.8,
+                  ),
+                )
+            ),
+          ],
+        ),
+        SizedBox(height:screenHeight*0.0023),
+        _currentCarousel ==0
+            ? CarouselSlider(
+            options: CarouselOptions(
+              autoPlay: false,
+              //aspectRatio: 16 / 9,
+              enlargeCenterPage: true,
+            ),
+          items: containerList1.map((container) {
+            return Container(
+              width: MediaQuery.of(context).size.width * 0.7,
+              height: MediaQuery.of(context).size.height,
+              margin: EdgeInsets.symmetric(horizontal: 5.0),
+              child: container,
+            );
+          }).toList(),
+        )
+            : SizedBox.shrink(),
+        _currentCarousel ==1
+            ? CarouselSlider(
+          options: CarouselOptions(
+            autoPlay: false,
+            //aspectRatio: 16 / 9,
+            enlargeCenterPage: true,
+          ),
+          items: containerList2.map((container) {
+            return Container(
+              width: MediaQuery.of(context).size.width * 0.7,
+              height: MediaQuery.of(context).size.height,
+              margin: EdgeInsets.symmetric(horizontal: 5.0),
+              child: container,
+            );
+          }).toList(),
+        )
+            : SizedBox.shrink(),
+      ],
+
+    );
+
   }
-  }
-
 }
 

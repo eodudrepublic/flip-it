@@ -64,9 +64,9 @@ class _UI5State extends State<UI5> {
                       borderRadius: BorderRadius.circular(60.0)
                     ),
                     width: screenWidth * 0.85,
-                    height: screenHeight * 0.7,
+                    height: screenHeight * 0.72,
                     margin: EdgeInsets.symmetric(vertical:15.0),
-                    padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                    padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                     child: Padding(
                       padding: EdgeInsets.all(30.0),
                       child: Center(
@@ -97,7 +97,7 @@ class _UI5State extends State<UI5> {
                                         letterSpacing: 0.8,
                                       )
                                   ),
-                                  SizedBox(height: 30.0),
+                                  SizedBox(height: containerHeight*0.07),
                                   Text(
                                       '🎨\n야구랑 바다 보러 가는 거 좋아함.',
                                       style: TextStyle(
@@ -186,7 +186,7 @@ class _UI5State extends State<UI5> {
                                 ],
                               )
                             ),
-                            SizedBox(height:screenWidth*0.15),
+                            SizedBox(height:containerHeight*0.12),
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: ElevatedButton(
