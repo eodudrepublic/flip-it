@@ -64,9 +64,9 @@ class _UI5State extends State<UI5> {
                       borderRadius: BorderRadius.circular(60.0)
                     ),
                     width: screenWidth * 0.85,
-                    height: screenHeight * 0.8,
+                    height: screenHeight * 0.72,
                     margin: EdgeInsets.symmetric(vertical:15.0),
-                    padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                    padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                     child: Padding(
                       padding: EdgeInsets.all(30.0),
                       child: Center(
@@ -97,7 +97,7 @@ class _UI5State extends State<UI5> {
                                         letterSpacing: 0.8,
                                       )
                                   ),
-                                  SizedBox(height: 30.0),
+                                  SizedBox(height: containerHeight*0.07),
                                   Text(
                                       '🎨\n야구랑 바다 보러 가는 거 좋아함.',
                                       style: TextStyle(
@@ -186,7 +186,7 @@ class _UI5State extends State<UI5> {
                                 ],
                               )
                             ),
-                            SizedBox(height:150.0),
+                            SizedBox(height:containerHeight*0.12),
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: ElevatedButton(
@@ -198,9 +198,9 @@ class _UI5State extends State<UI5> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0xFFE0E0E0), // 버튼 배경색
-                                  foregroundColor: Colors.white, // 텍스트 색상
+                                  foregroundColor: Color(0xFF7D7D7D), // 텍스트 색상
                                   elevation: 0, // 그림자 크기
-                                  padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0), // 내부 여백
+                                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0), // 내부 여백
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0),// 버튼 모서리 둥글기
                                   ),
@@ -208,8 +208,7 @@ class _UI5State extends State<UI5> {
                                 child: Text(
                                   "닫기",
                                   style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: screenWidth * 0.025,
+                                    fontSize: screenWidth * 0.0258,
                                     fontWeight: FontWeight.bold,
                                     letterSpacing: 0.8,
                                   ),
