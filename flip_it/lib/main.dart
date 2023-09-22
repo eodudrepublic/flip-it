@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: const Scaffold(
-        body: SafeArea(child: SignIn()),
+        body: SafeArea(child: SignUp()),
       ),
       theme: ThemeData(
         useMaterial3: true,
