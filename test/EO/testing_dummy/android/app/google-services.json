@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "649882463451",
+    "project_id": "test-b63ea",
+    "storage_bucket": "test-b63ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649882463451:android:bde2cbf7c59f1c66b6b0fe",
+        "android_client_info": {
+          "package_name": "com.tyger.flutter_velog_sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649882463451-8rtglmda5b52cafra07g7rf5nbi90e3a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW8Vsa2B-qg8chuVTM7mOkvgnWJllEJTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "649882463451-8rtglmda5b52cafra07g7rf5nbi90e3a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
