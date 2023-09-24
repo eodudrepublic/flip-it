@@ -1,6 +1,46 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+// 포스트잇을 플립하기 위한 기능을 모아놓은 클래스
+// read_data 파일에서 사용법 참고하면 될듯
+class FlipSeasonData {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<void> updateMyFlipsAndFlippedMe(String uid) async {
+    final user = _auth.currentUser;
+    if (user == null) return;
+
+    // Check if user already flipped the uid before
+    DocumentSnapshot myDataSnapshot = await _firestore.collection('season_data').doc(user.uid).get();
+    List<dynamic> myFlips = myDataSnapshot['My_flips'] ?? [];
+
+    if (!myFlips.contains(uid)) {
+      // my_flips 업데이트
+      await _firestore.collection('season_data').doc(user.uid).update({
+        'My_flips': FieldValue.arrayUnion([uid])
+      });
+
+      // flipped_me 업데이트
+      await _firestore.collection('season_data').doc(uid).update({
+        'Flipped_me': FieldValue.arrayUnion([user.uid])
+      });
+
+      // 코인 업데이트
+      DocumentSnapshot userData = await _firestore.collection('user_data').doc(user.uid).get();
+      int currentUserCoin = userData['coin'];
+      if (currentUserCoin >= 500) {
+        await _firestore.collection('user_data').doc(user.uid).update({'coin': currentUserCoin - 500});
+      }
+    }
+  }
+
+  Future<int?> getCurrentUserCoin(String uid) async {
+    DocumentSnapshot userData = await _firestore.collection('user_data').doc(uid).get();
+    return userData['coin'];
+  }
+}
+
 // 데이터 추가 (AddData) 정의
 // 로그인된 사용자의 season_data가 있는지 확인하는 코드는 write_data의 checkExistingData메서드 확인
 class AddSeasonData extends SeasonDataFormat {

@@ -3,10 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flip_it/test.dart';
 import 'package:flutter/material.dart';
-
-// 현재 문제점 :
-// 1. 플립한 uid, 플립당한 uid가 각각 저장되지 않음 -> 플립할때마다 코인 소모 => 해결!
-// 2. 플립해도 세부 내용 보이지 않음 => 해결!
+import 'data_structure.dart';
 
 class ReadData extends StatefulWidget {
   const ReadData({super.key});
@@ -20,34 +17,7 @@ class _ReadDataState extends State<ReadData> {
   Map<String, dynamic> expandedData = {};
   String? currentlyExpandedUid;
 
-  Future<void> updateMyFlipsAndFlippedMe(String uid) async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
-
-    // Check if user already flipped the uid before
-    DocumentSnapshot myDataSnapshot = await FirebaseFirestore.instance.collection('season_data').doc(user.uid).get();
-    List<dynamic> myFlips = myDataSnapshot['My_flips'] ?? [];
-
-    if (!myFlips.contains(uid)) {
-      // my_flips 업데이트
-      DocumentReference myDocRef = FirebaseFirestore.instance.collection('season_data').doc(user.uid);
-      await myDocRef.update({
-        'My_flips': FieldValue.arrayUnion([uid])
-      });
-
-      // flipped_me 업데이트
-      DocumentReference theirDocRef = FirebaseFirestore.instance.collection('season_data').doc(uid);
-      await theirDocRef.update({
-        'Flipped_me': FieldValue.arrayUnion([user.uid])
-      });
-
-      // 코인 업데이트
-      if (currentUserCoin! >= 500) {
-        await FirebaseFirestore.instance.collection('user_data').doc(user.uid).update({'coin': currentUserCoin! - 500});
-        currentUserCoin = currentUserCoin! - 500;
-      }
-    }
-  }
+  final FlipSeasonData _firebaseService = FlipSeasonData();
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +53,7 @@ class _ReadDataState extends State<ReadData> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
+        // season_data를 불러오는 stream
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collection('season_data').snapshots(),
           builder: (context, snapshot) {
@@ -100,19 +71,18 @@ class _ReadDataState extends State<ReadData> {
               itemCount: docs.length,
               itemBuilder: (context, index) {
                 return Card(
+                  // 익명으로 로그인하든, 이메일로 로그인하든 로그인하고 Write Data해야 타일 확장가능
+                  // -> 어차피 내 포스트잇 등록한 후에 보드로 넘어가니 상관없다고 판단했음
                   child: ExpansionTile(
                     initiallyExpanded: currentlyExpandedUid == docs[index].id,  // Keep the tile expanded based on the UID
                     title: Text("UID: ${docs[index].id}"),
                     onExpansionChanged: (expanded) async {
                       if (expanded) {
-                        currentlyExpandedUid = docs[index].id;  // Save the UID of the currently expanded tile
+                        currentlyExpandedUid = docs[index].id;
                         expandedData = docs[index].data() as Map<String, dynamic>;
 
-                        DocumentSnapshot userData = await FirebaseFirestore.instance.collection('user_data').doc(currentUserUid).get();
-                        currentUserCoin = userData['coin'];
-
-                        // Firestore 업데이트
-                        await updateMyFlipsAndFlippedMe(docs[index].id);
+                        currentUserCoin = await _firebaseService.getCurrentUserCoin(currentUserUid!);
+                        await _firebaseService.updateMyFlipsAndFlippedMe(docs[index].id);
                         setState(() {});  // Force a rebuild to update the displayed data
                       }
                     },
@@ -132,3 +102,4 @@ class _ReadDataState extends State<ReadData> {
     );
   }
 }
+
