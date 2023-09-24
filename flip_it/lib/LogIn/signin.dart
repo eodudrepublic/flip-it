@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../DB/data_structure.dart';
+
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
 
@@ -106,6 +108,13 @@ class _AnonSignInState extends State<AnonSignIn> {
       setState(() {
         _uid = userCredential.user?.uid; // <-- UID 저장
       });
+
+      // Firestore에 사용자 정보 저장
+      User? user = userCredential.user;
+      if (user != null) {
+        AddUserData userData = AddUserData(5000, 'Anonymous', 50); // 익명 사용자의 경우 이름을 'Anonymous'로 설정
+        await userData.saveToUserData(user.uid);
+      }
 
       print('Signed in with uid: ${userCredential.user!.uid}');
     } catch (e) {
