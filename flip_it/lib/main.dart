@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Scaffold(
+      home: Scaffold(
         body: SafeArea(child: SignUp()),
       ),
       theme: ThemeData(
