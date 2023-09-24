@@ -1,5 +1,6 @@
 class Dating {
-  Dating(this.age, this.mbti, this.intro, this.gender, this.height, this.fat, this.muscle, this.hobby, this.relationship, this.smoke, this.contact);
+  Dating(this.uid, this.age, this.mbti, this.intro, this.gender, this.height, this.fat, this.muscle, this.hobby, this.relationship, this.smoke, this.contact);
+  String uid;
   int age;
   String mbti;
   String intro;

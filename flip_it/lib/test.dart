@@ -57,6 +57,12 @@ class TestScreen extends StatelessWidget {
               _item(
                 length: 1,
                 context: context,
+                content: "Anonymously Sign In",
+                namedRouter: "/LogIn/anonsignin",
+              ),
+              _item(
+                length: 1,
+                context: context,
                 content: "Sign In",
                 namedRouter: "/LogIn/signin",
               ),

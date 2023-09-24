@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class WriteData extends StatefulWidget {
   const WriteData({super.key});
@@ -22,20 +23,57 @@ class _WriteDataState extends State<WriteData> {
   bool gender = true;
   bool smoke = false;
 
+  bool isButtonDisabled = true; // 버튼의 활성화 상태
+  // 해당 사용자가 등록한 데이터가 있는지 확인하는 변수!
+
+  @override
+  void initState() {
+    super.initState();
+    checkExistingData();
+  }
+
+  // 로그인된 사용자가 데이터를 이미 추가했는지 확인합니다.
+  Future<void> checkExistingData() async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      final doc = await FirebaseFirestore.instance.collection('season_data').doc(user.uid).get();
+      setState(() {
+        isButtonDisabled = doc.exists;
+      });
+    }
+  }
+
   void addData() async {
-    FirebaseFirestore.instance.collection('season_data').doc('test').set({
-      'MBTI': mbtiController.text,
-      'age': int.parse(ageController.text),
-      'contact': contactController.text,
-      'fat': [fatController.text],
-      'gender': gender,
-      'height': int.parse(heightController.text),
-      'hobby': hobbyController.text,
-      'intro': introController.text,
-      'muscle': [muscleController.text],
-      'relationship': relationshipController.text.split(','), // Comma separated
-      'smoke': smoke,
-    });
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      final doc = await FirebaseFirestore.instance.collection('season_data').doc(user.uid).get();
+      if (doc.exists) {
+        // 데이터가 이미 존재할 경우 SnackBar로 오류 메시지를 표시
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('You have already saved the data!'),
+          ),
+        );
+      } else {
+        // 데이터가 존재하지 않을 경우 데이터 추가
+        FirebaseFirestore.instance.collection('season_data').doc(user.uid).set({
+          'UID': user.uid, // 사용자 UID를 저장합니다.
+          'MBTI': mbtiController.text,
+          'age': int.parse(ageController.text),
+          'contact': contactController.text,
+          'fat': [fatController.text],
+          'gender': gender,
+          'height': int.parse(heightController.text),
+          'hobby': hobbyController.text,
+          'intro': introController.text,
+          'muscle': [muscleController.text],
+          'relationship': relationshipController.text.split(','), // Comma separated
+          'smoke': smoke,
+        });
+      }
+    }
   }
 
   @override
@@ -105,7 +143,7 @@ class _WriteDataState extends State<WriteData> {
                 },
               ),
               ElevatedButton(
-                onPressed: addData,
+                onPressed: isButtonDisabled ? null : addData,
                 child: Text('Add Data'),
               ),
             ],

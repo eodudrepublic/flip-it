@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/LogIn/signup': (context) => SignUp(),
         '/DB/read_data': (context) => const ReadData(), // 이 부분이 "Read Data" 라우트를 설정합니다.
         '/DB/write_data': (context) => const WriteData(),
+        '/LogIn/anonsignin' : (context) => const AnonSignIn(),
         '/UI/memo_ui' : (context) => const MemoUI(),
         '/UI/ui1' : (context) => const UI1(),
         '/UI/ui2' : (context) => const UI2(),

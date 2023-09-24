@@ -12,6 +12,7 @@ class _SignInState extends State<SignIn> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  String? _uid; // <-- UID를 저장할 변수
 
   Future<void> _loginUser() async {
     try {
@@ -19,6 +20,10 @@ class _SignInState extends State<SignIn> {
         email: emailController.text,
         password: passwordController.text,
       );
+
+      setState(() {
+        _uid = userCredential.user?.uid; // <-- UID 저장
+      });
 
       Navigator.pushReplacement(
         context,
@@ -58,6 +63,10 @@ class _SignInState extends State<SignIn> {
               onPressed: _loginUser,
               child: Text('Login'),
             ),
+
+            // UID 출력
+            if (_uid != null)
+              Text('uid: $_uid'),
           ],
         ),
       ),
@@ -74,5 +83,52 @@ class SuccessPage extends StatelessWidget {
         child: Text('Login Successful!'),
       ),
     );
+  }
+}
+
+class AnonSignIn extends StatefulWidget {
+  const AnonSignIn({super.key});
+
+  @override
+  _AnonSignInState createState() => _AnonSignInState();
+}
+
+class _AnonSignInState extends State<AnonSignIn> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String? _uid; // <-- UID를 저장할 변수
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('테스트용 : 익명 로그인')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              child: Text('Sign in Anonymously'),
+              onPressed: _signInAnonymously,
+            ),
+            // UID 출력
+            if (_uid != null)
+              Text('uid: $_uid'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _signInAnonymously() async {
+    try {
+      UserCredential userCredential = await _auth.signInAnonymously();
+
+      setState(() {
+        _uid = userCredential.user?.uid; // <-- UID 저장
+      });
+
+      print('Signed in with uid: ${userCredential.user!.uid}');
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 }

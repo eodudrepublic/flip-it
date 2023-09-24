@@ -65,6 +65,7 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
               controller: _idController,
