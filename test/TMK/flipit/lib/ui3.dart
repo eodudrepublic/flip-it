@@ -210,9 +210,9 @@ class _CustomDialogState extends State<CustomDialog> {
           fillColor: MaterialStateColor.resolveWith(
                 (states) {
               if (states.contains(MaterialState.selected)) {
-                return Color(0xffFF5EFF); // Change this to your desired color
+                return Color(0xffFF5EFF);
               }
-              return Colors.blue; // Change this to your desired color
+              return Colors.blue;
             },
           ),
         ),
