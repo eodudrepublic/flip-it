@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flip_it/DB/data_structure.dart';
 
 class WriteData extends StatefulWidget {
   const WriteData({super.key});
@@ -41,38 +42,6 @@ class _WriteDataState extends State<WriteData> {
       setState(() {
         isButtonDisabled = doc.exists;
       });
-    }
-  }
-
-  void addData() async {
-    final user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
-      final doc = await FirebaseFirestore.instance.collection('season_data').doc(user.uid).get();
-      if (doc.exists) {
-        // 데이터가 이미 존재할 경우 SnackBar로 오류 메시지를 표시
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('You have already saved the data!'),
-          ),
-        );
-      } else {
-        // 데이터가 존재하지 않을 경우 데이터 추가
-        FirebaseFirestore.instance.collection('season_data').doc(user.uid).set({
-          'UID': user.uid, // 사용자 UID를 저장합니다.
-          'MBTI': mbtiController.text,
-          'age': int.parse(ageController.text),
-          'contact': contactController.text,
-          'fat': [fatController.text],
-          'gender': gender,
-          'height': int.parse(heightController.text),
-          'hobby': hobbyController.text,
-          'intro': introController.text,
-          'muscle': [muscleController.text],
-          'relationship': relationshipController.text.split(','), // Comma separated
-          'smoke': smoke,
-        });
-      }
     }
   }
 
@@ -143,7 +112,33 @@ class _WriteDataState extends State<WriteData> {
                 },
               ),
               ElevatedButton(
-                onPressed: isButtonDisabled ? null : addData,
+                onPressed: isButtonDisabled ? null : () async {
+                  AddData adder = AddData(
+                    uid: FirebaseAuth.instance.currentUser!.uid,
+                    mbti: mbtiController.text,
+                    age: int.parse(ageController.text),
+                    contact: contactController.text,
+                    fat: relationshipController.text.split(','),
+                    gender: gender,
+                    height: int.parse(heightController.text),
+                    hobby: hobbyController.text,
+                    intro: introController.text,
+                    muscle: relationshipController.text.split(','),
+                    relationship: relationshipController.text.split(','),
+                    smoke: smoke,
+                    flipped_me: [],
+                    my_flips: [],
+                  );
+
+                  DataAddResult result = await adder.addData();
+                  if (result == DataAddResult.success) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Data added successfully!')));
+                  } else if (result == DataAddResult.dataAlreadyExists) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('You have already saved the data!')));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error occurred!')));
+                  }
+                },
                 child: Text('Add Data'),
               ),
             ],
@@ -152,4 +147,7 @@ class _WriteDataState extends State<WriteData> {
       ),
     );
   }
+}
+
+class DataAdder {
 }

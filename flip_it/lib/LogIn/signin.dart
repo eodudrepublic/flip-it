@@ -24,13 +24,6 @@ class _SignInState extends State<SignIn> {
       setState(() {
         _uid = userCredential.user?.uid; // <-- UID 저장
       });
-
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => SuccessPage(),
-        ),
-      );
     } catch (e) {
       print("An error occurred while logging in: $e");
       ScaffoldMessenger.of(context).showSnackBar(
