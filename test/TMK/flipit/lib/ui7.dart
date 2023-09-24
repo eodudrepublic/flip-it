@@ -58,7 +58,7 @@ class _UI7State extends State<UI7> {
                   borderRadius: BorderRadius.circular(60.0)),
               width: screenWidth * 0.85,
               height: screenHeight * 0.72,
-              margin: EdgeInsets.symmetric(vertical: 15.0),
+              margin: EdgeInsets.symmetric(vertical: 10.0),
               padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
               child: Padding(
                 padding: EdgeInsets.all(30.0),
