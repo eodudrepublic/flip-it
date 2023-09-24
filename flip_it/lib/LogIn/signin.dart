@@ -67,18 +67,6 @@ class _SignInState extends State<SignIn> {
   }
 }
 
-class SuccessPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Success')),
-      body: Center(
-        child: Text('Login Successful!'),
-      ),
-    );
-  }
-}
-
 class AnonSignIn extends StatefulWidget {
   const AnonSignIn({super.key});
 

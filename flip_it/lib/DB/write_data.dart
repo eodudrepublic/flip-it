@@ -113,7 +113,7 @@ class _WriteDataState extends State<WriteData> {
               ),
               ElevatedButton(
                 onPressed: isButtonDisabled ? null : () async {
-                  AddData adder = AddData(
+                  AddSeasonData adder = AddSeasonData(
                     uid: FirebaseAuth.instance.currentUser!.uid,
                     mbti: mbtiController.text,
                     age: int.parse(ageController.text),

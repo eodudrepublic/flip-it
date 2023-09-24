@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 // 데이터 추가 (AddData) 정의
 // 로그인된 사용자의 season_data가 있는지 확인하는 코드는 write_data의 checkExistingData메서드 확인
-class AddData extends SeasonDataFormat {
-  AddData({
+class AddSeasonData extends SeasonDataFormat {
+  AddSeasonData({
     required String uid,
     required int age,
     required String mbti,
@@ -57,7 +57,7 @@ class AddData extends SeasonDataFormat {
   }
 }
 
-// 데이터 포맷 정의
+// season_data 데이터 포맷 정의
 class SeasonDataFormat {
   SeasonDataFormat(this.uid, this.age, this.mbti, this.intro, this.gender, this.height, this.fat, this.muscle, this.hobby, this.relationship, this.smoke, this.contact, this.flipped_me, this.my_flips);
 
@@ -77,6 +77,58 @@ class SeasonDataFormat {
 
   List<String> flipped_me;
   List<String> my_flips;
+
+  // 객체 데이터 반환
+  Map<String, dynamic> toJson() {
+    return {
+      'UID': uid,
+      'age': age,
+      'MBTI': mbti,
+      'intro': intro,
+      'gender': gender,
+      'height': height,
+      'fat': fat,
+      'muscle': muscle,
+      'hobby': hobby,
+      'relationship': relationship,
+      'smoke': smoke,
+      'contact': contact,
+      'Flipped_me': flipped_me,
+      'My_flips': my_flips,
+    };
+  }
+}
+
+// user_data 추가
+class AddUserData extends UserDataFormat {
+  AddUserData(int coin, String name, int score) : super(coin, name, score);
+
+  Future<void> saveToUserData(String uid) async {
+    try {
+      await FirebaseFirestore.instance.collection('user_data').doc(uid).set(toJson());
+      print('Data saved successfully');
+    } catch (e) {
+      print('Error saving data to Firestore: $e');
+    }
+  }
+}
+
+// user_data 데이터 포맷 정의
+class UserDataFormat {
+  UserDataFormat(this.coin, this.name, this.score);
+
+  int coin;
+  String name;
+  int score;
+
+  // 객체 데이터 반환
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'coin': coin,
+      'score': score,
+    };
+  }
 }
 
 // 데이터 추가 결과 (성공 및 오류)를 표현하기 위한 열거형
