@@ -75,6 +75,12 @@ class TestScreen extends StatelessWidget {
               _item(
                 length: 1,
                 context: context,
+                content: "Sign Out",
+                namedRouter: "/LogIn/signout",
+              ),
+              _item(
+                length: 1,
+                context: context,
                 content: "Read Data",
                 namedRouter: "/DB/read_data",
               ),

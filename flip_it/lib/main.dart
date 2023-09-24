@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flip_it/DB/read_data.dart';
 import 'package:flip_it/DB/write_data.dart';
 import 'package:flip_it/LogIn/signin.dart';
+import 'package:flip_it/LogIn/signout.dart';
 import 'package:flip_it/LogIn/signup.dart';
 import 'package:flip_it/UI/memo_ui.dart';
 import 'package:flip_it/UI/ui1.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/DB/read_data': (context) => const ReadData(), // 이 부분이 "Read Data" 라우트를 설정합니다.
         '/DB/write_data': (context) => const WriteData(),
         '/LogIn/anonsignin' : (context) => const AnonSignIn(),
+        '/LogIn/signout' : (context) => const SignOut(),
         '/UI/memo_ui' : (context) => const MemoUI(),
         '/UI/ui1' : (context) => const UI1(),
         '/UI/ui2' : (context) => const UI2(),
