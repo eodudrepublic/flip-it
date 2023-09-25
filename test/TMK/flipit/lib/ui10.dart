@@ -75,7 +75,7 @@ class UI10 extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: screenHeight*0.018),
+                SizedBox(height: screenHeight*0.012),
                 Container(
                   width: screenWidth * 0.8,
                   height: screenHeight*0.05,
@@ -91,7 +91,7 @@ class UI10 extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: screenHeight*0.018),
+                SizedBox(height: screenHeight*0.012),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(
