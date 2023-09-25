@@ -406,7 +406,7 @@ class _SignUpState extends State<SignUp> {
       children: [
         for (int i = 0; i < 6; i++)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: SizedBox(
               width: 30.0,
               child: TextField(
