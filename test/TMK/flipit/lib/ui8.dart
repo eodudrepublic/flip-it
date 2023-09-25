@@ -116,14 +116,14 @@ class _SignUpState extends State<SignUp> {
       appBar: AppBar(
         backgroundColor: Colors.white70,
         title: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth*0.02, vertical:screenHeight*0.001),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 '회원가입',
                 style: TextStyle(
-                  fontSize: 24.0,
+                  fontSize: screenHeight*0.03,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
@@ -133,18 +133,18 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth*0.02, vertical:screenHeight*0.0015),
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: EdgeInsets.symmetric(horizontal: screenWidth*0.05, vertical:screenHeight*0.03),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     '이메일',
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: screenHeight*0.02,
                       fontWeight: FontWeight.w500,
                       color: Colors.black,
                     ),
@@ -152,18 +152,23 @@ class _SignUpState extends State<SignUp> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextField(
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            hintText: '부산대 이메일 아이디',
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF4B2FFE)),
+                        child: Container(
+                          height: screenHeight*0.043,
+                          child: TextField(
+                            controller: _emailController,
+                            decoration: InputDecoration(
+                              hintText: '부산대 이메일 아이디',
+                              hintStyle: TextStyle(fontSize: screenHeight*0.017),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Color(0xFF4B2FFE)),
+                              ),
                             ),
+                            style: TextStyle(fontSize:screenHeight*0.02),
                           ),
                         ),
                       ),
                       Text('@pusan.co.kr'),
-                      SizedBox(width: 15.0),
+                      SizedBox(width: screenWidth*0.03),
                       ElevatedButton(
                         onPressed: (){
                           if(_emailController.text.isNotEmpty){
@@ -173,6 +178,8 @@ class _SignUpState extends State<SignUp> {
                         },
                         child: Text('본인 인증'),
                         style: ElevatedButton.styleFrom(
+                          minimumSize: Size(screenWidth*0.18, screenHeight*0.045),
+                          textStyle: TextStyle(fontSize: screenHeight*0.017, fontWeight:FontWeight.w700),
                           backgroundColor: _emailController.text.isNotEmpty ? Color(0xFF4B2FFE) : Color(0xFFE5E5E5),
                           foregroundColor: Colors.white,
                           elevation: 0,
@@ -188,28 +195,30 @@ class _SignUpState extends State<SignUp> {
                   ),
                   if (_isVerificationVisible)
                     Padding(
-                      padding: EdgeInsets.only(top: 10.0),
+                      padding: EdgeInsets.only(top: screenHeight*0.017),
                       child: Container(
                         color: Color(0xFFE5E5E5),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.symmetric(horizontal:screenWidth*0.028,vertical:screenHeight*0.015),
                           child: Column(
                             children: [
-                              SizedBox(height: screenHeight * 0.02),
+                              SizedBox(height: screenHeight * 0.01),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     '이메일로 전송된 인증번호를 아래에 입력해줘.',
+                                    style: TextStyle(fontSize: screenHeight*0.017, fontWeight:FontWeight.w500)
                                   ),
                                 ],
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     '아직 인증번호를 받지 못했다면?',
                                     style: TextStyle(
+                                      fontSize: screenHeight*0.0165,
                                       color: Color(0xFF7D7D7D),
                                     ),
                                   ),
@@ -223,12 +232,14 @@ class _SignUpState extends State<SignUp> {
                                     },
                                     child: Text('재전송'),
                                     style: ElevatedButton.styleFrom(
+                                      minimumSize: Size(screenWidth*0.125, screenHeight*0.04),
+                                      textStyle: TextStyle(fontSize:screenHeight*0.015),
                                       backgroundColor: Color(0xFFC8C8C8),
                                       foregroundColor: Color(0xFF7D7D7D),
                                       elevation: 0,
                                       padding: EdgeInsets.symmetric(
-                                        horizontal: 0,
-                                        vertical: 0,
+                                        horizontal: screenWidth*0.01,
+                                        vertical: screenHeight*0.01,
                                       ),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(15.0),
@@ -237,17 +248,18 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                 ],
                               ),
-                              _buildCodeInput(),
+                              //SizedBox(height: screenHeight * 0.005),
+                              _buildCodeInput(context),
                               SizedBox(height: screenHeight * 0.015),
                               Text(
                                 timerText,
                                 style: TextStyle(
                                   color: Colors.red,
-                                  fontSize: screenWidth * 0.04,
+                                  fontSize: screenHeight * 0.017,
                                   fontWeight: FontWeight.w300,
                                 ),
                               ),
-                              SizedBox(height: screenHeight * 0.02),
+                              SizedBox(height: screenHeight * 0.015),
                               ElevatedButton(
                                 onPressed: (){
                                   _cancelTimer();
@@ -257,6 +269,8 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 child: Text('확인'),
                                 style: ElevatedButton.styleFrom(
+                                  minimumSize: Size(screenWidth*0.18, screenHeight*0.045),
+                                  textStyle: TextStyle(fontSize:screenHeight*0.017, fontWeight:FontWeight.w700),
                                   backgroundColor: Color(0xFF4B2FFE),
                                   foregroundColor: Colors.white,
                                   elevation: 0,
@@ -273,11 +287,11 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ),
-                  SizedBox(height: screenHeight*0.025),
+                  SizedBox(height: screenHeight*0.033),
                   Text(
                     '비밀번호',
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: screenHeight*0.02,
                       fontWeight: FontWeight.w500,
                       color: Colors.black,
                     ),
@@ -285,24 +299,28 @@ class _SignUpState extends State<SignUp> {
                   Row(
                     children:[
                       Expanded(
-                        child: TextField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: '비밀번호 (대문자 포함 8~16글자)',
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF4B2FFE)),
+                          child: Container(
+                            height: screenHeight*0.043,
+                            child: TextField(
+                              controller: _passwordController,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                hintText: '비밀번호 (대문자 포함 8~16글자)',
+                                hintStyle: TextStyle(fontSize:screenHeight*0.017),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Color(0xFF4B2FFE)),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
                     ],
                   ),
-                  SizedBox(height: screenHeight*0.025),
+                  SizedBox(height: screenHeight*0.033),
                   Text(
                     '비밀번호 확인',
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: screenHeight*0.02,
                       fontWeight: FontWeight.w500,
                       color: Colors.black,
                     ),
@@ -310,18 +328,22 @@ class _SignUpState extends State<SignUp> {
                   Row(
                     children:[
                       Expanded(
-                        child: TextField(
-                          controller: _checkController,
-                          obscureText: true,
-                          onChanged: (value) {
-                            setState(() {
-                              // Add code to update the UI based on password confirmation
-                            });
-                          },
-                          decoration: InputDecoration(
-                            hintText: '비밀번호 재입력',
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF4B2FFE)),
+                        child: Container(
+                          height: screenHeight*0.043,
+                          child: TextField(
+                            controller: _checkController,
+                            obscureText: true,
+                            onChanged: (value) {
+                              setState(() {
+                                // Add code to update the UI based on password confirmation
+                              });
+                            },
+                            decoration: InputDecoration(
+                              hintText: '비밀번호 재입력',
+                              hintStyle: TextStyle(fontSize:screenHeight*0.017),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Color(0xFF4B2FFE)),
+                              ),
                             ),
                           ),
                         ),
@@ -329,18 +351,18 @@ class _SignUpState extends State<SignUp> {
                       isPasswordValid(_passwordController.text) &&
                           _checkController.text.isNotEmpty &&
                           _passwordController.text == _checkController.text
-                          ? Text('일치 ✓', style: TextStyle(color: Color(0xFF4B2FFE)))
+                          ? Text('일치 ✓', style: TextStyle(color: Color(0xFF4B2FFE), fontSize:screenHeight*0.017))
                           : (_checkController.text.isNotEmpty
-                          ? Text('불일치 X', style: TextStyle(color: Colors.red))
+                          ? Text('불일치 X', style: TextStyle(color: Colors.red, fontSize:screenHeight*0.017))
                           : Text('')),
 
                     ],
                   ),
-                  SizedBox(height: screenHeight*0.025),
+                  SizedBox(height: screenHeight*0.033),
                   Text(
                     '이름',
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: screenHeight*0.02,
                       fontWeight: FontWeight.w500,
                       color: Colors.black,
                     ),
@@ -348,19 +370,24 @@ class _SignUpState extends State<SignUp> {
                   Row(
                     children:[
                       Expanded(
-                        child: TextField(
-                          controller: _nameController,
-                          decoration: InputDecoration(
-                            hintText: '다른 사람들에게는 공개되지 않아!',
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF4B2FFE)),
+                        child: Container(
+                          height: screenHeight*0.043,
+                          child: TextField(
+                            controller: _nameController,
+                            decoration: InputDecoration(
+                              hintText: '다른 사람들에게는 공개되지 않아!',
+                              hintStyle: TextStyle(fontSize:screenHeight*0.017),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Color(0xFF4B2FFE)),
+                              ),
                             ),
+                            style: TextStyle(fontSize:screenHeight*0.02),
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: screenHeight*0.025),
+                  SizedBox(height: screenHeight*0.033),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -400,7 +427,10 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  Widget _buildCodeInput() {
+  Widget _buildCodeInput(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -408,7 +438,8 @@ class _SignUpState extends State<SignUp> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: SizedBox(
-              width: 30.0,
+              width: screenHeight*0.02,
+              height: screenHeight*0.045,
               child: TextField(
                 controller: _controllers[i],
                 maxLength: 1,

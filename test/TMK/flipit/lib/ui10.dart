@@ -81,6 +81,7 @@ class UI10 extends StatelessWidget {
                   height: screenHeight*0.05,
 
                   child: TextField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       labelText: '비밀번호',
                       filled: true,
