@@ -553,7 +553,7 @@ class _Detail4State extends State<Detail4> {
         borderRadius: BorderRadius.circular(60.0),
       ),
       child: Padding(
-        padding: EdgeInsets.all(screenWidth*0.07),
+        padding: EdgeInsets.fromLTRB(screenWidth*0.07,screenWidth*0.07,screenWidth*0.07,0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
