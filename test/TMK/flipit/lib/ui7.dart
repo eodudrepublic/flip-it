@@ -45,7 +45,7 @@ class _UI7State extends State<UI7> {
         ],
         leading: Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-          child: Image.asset('images/appIcon1.png'),
+          child: Image.asset('assets/images/appIcon.png'),
         ), //2안 - Icons.photo_filter
       ),
       body: Form(

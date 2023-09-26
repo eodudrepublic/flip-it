@@ -82,11 +82,10 @@ class _UI6State extends State<UI6> {
                       borderRadius: BorderRadius.circular(50.0),
                     ),
                     width: screenWidth * 0.85,
-                    height: screenHeight * 0.28,
-                    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.03),
-
+                    height: screenWidth * 0.58,
+                    margin: EdgeInsets.only(top:screenHeight * 0.03),
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(screenWidth*0.06, screenHeight*0.03, screenWidth*0.06, 0),
+                      padding: EdgeInsets.fromLTRB(screenWidth*0.07, screenHeight*0.03, screenWidth*0.07, 0),
                       child: Center(
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -99,7 +98,8 @@ class _UI6State extends State<UI6> {
                                   '23 · ISTJ',
                                   style: TextStyle(
                                       fontSize: screenWidth * 0.05,
-                                      fontWeight: FontWeight.w900),
+                                      fontWeight: FontWeight.w900,
+                                  ),
                                   ),
                                 ]
                               ),
@@ -113,12 +113,24 @@ class _UI6State extends State<UI6> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            //margin 으로 바뀌고 textformfield로 바꿔야함
-                                            "💟 감정을 잘 챙길 줄 알고 섬세한 사람\n👀 운동 잘하고 키 크면 더 좋아!",
+                                            //textformfield로 바꿔야함
+                                            "💟 감정을 살필 줄 알고 솔직섬세한 사람", //입력받는 거 글자수 제한 걸어야함
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: screenWidth * 0.04,
                                               fontWeight: FontWeight.w500,
+                                              //fontFamily: 'PretendardVariable',
+                                              letterSpacing: 0.8,
+                                            ),
+                                          ),
+                                          Text(
+                                            //textformfield로 바꿔야함
+                                            "👀 운동 잘하고 키 크면 더 좋아!",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: screenWidth * 0.04,
+                                              fontWeight: FontWeight.w500,
+                                              //fontFamily: 'PretendardVariable',
                                               letterSpacing: 0.8,
                                             ),
                                           ),
@@ -127,7 +139,7 @@ class _UI6State extends State<UI6> {
                                   ),
                               const Spacer(),
                               Container(
-                                margin: EdgeInsets.only(bottom: screenHeight*0.0125),
+                                margin: EdgeInsets.only(bottom: screenWidth*0.036),
                                 child: ElevatedButton(
                                   onPressed: () {
                                     Navigator.push(
@@ -161,18 +173,29 @@ class _UI6State extends State<UI6> {
                       ),
                     ),
                   ),
+                  SizedBox(height:screenHeight*0.02),
                   Container(
+                    width: screenWidth * 0.85,
+                    height: screenHeight * 0.4, //screenWidth * 0.73
+                    padding: EdgeInsets.fromLTRB(screenWidth*0.05, screenHeight*0.03, screenWidth*0.05, 0.0),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(50.0),
+                      /*boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),  // 그림자 색상 및 투명도
+                          spreadRadius: 3,  // 그림자 확산 범위
+                          blurRadius: 7,  // 그림자의 흐릿한 정도
+                          offset: Offset(0, 3),  // 그림자 위치 (x, y)
+                        ),
+                      ],*/
+
                       border: Border.all(
                         color: Colors.black,
-                        width: 2.0,
+                        width: 1.0,
                       ),
-                      borderRadius: BorderRadius.circular(50.0),
+
                     ),
-                    width: screenWidth * 0.85,
-                    height: screenHeight * 0.4,
-                    padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                     child: Padding(
                       padding: EdgeInsets.all(0.0),
                       child: Center(
@@ -184,32 +207,32 @@ class _UI6State extends State<UI6> {
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                /*Image.asset(
-                                      'images/flipscore.png',
-                                      width: screenWidth * 0.3,
-                                      height: screenHeight * 0.07,
-                                    ),*/
                                   Text(
-                                    'Flip Score: ',
+                                    'FLIP SCORE:',
                                     style: TextStyle(
-                                      color: Color(0xFFFF5EFF),
+                                      color: Colors.black,//Color(0xFF4B2FFE),
                                       fontSize: screenWidth * 0.0395,
                                       fontWeight: FontWeight.bold,
+                                      fontFamily: 'PressStart2P-Regular',
                                       letterSpacing: 0.8,
                                     ),
                                   ),
                                   Text(
-                                    '33회', //서버 데이터
+                                    '33', //서버 데이터
                                     style: TextStyle(
-                                      color: Color(0xFFFF5EFF),
+                                      color: Color(0xFF4B2FFE),
                                       fontSize: screenWidth * 0.035,
                                       fontWeight: FontWeight.bold,
+                                      fontFamily: 'PressStart2P-Regular',
                                       letterSpacing: 0.8,
                                     ),
                                   )
                                 ],
                               ),
-                              SizedBox(height: screenHeight * 0.0023),
+                              Divider(
+                                //color: Colors.black,
+                                  height: screenHeight * 0.03
+                              ),
                               ContainerSlider(),
                             //ContainerSlider(),
                           ]
@@ -271,10 +294,10 @@ class _ContainerSliderState extends State<ContainerSlider> {
         margin: EdgeInsets.fromLTRB(
             0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-        width: containerWidth * 0.75,
-        height: containerHeight * 0.3,
+        width: screenWidth * 0.75,
+        height: screenWidth * 0.4,
         decoration: BoxDecoration(
-          color: Color(0xffFEC200),
+          color: const Color(0xffFEC200),
           borderRadius: BorderRadius.circular(40.0),
         ),
         child: Center(
@@ -289,43 +312,47 @@ class _ContainerSliderState extends State<ContainerSlider> {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.002),
-                Container(
-                    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                    width: screenWidth * 0.8,
-                    height: screenHeight * 0.07,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFF5EFF),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Center(
-                        child: Column(
+                Divider(
+                  color: Colors.black,
+                    height: screenHeight * 0.02),
+                Center(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "👀 ㄴㄴ",
+                          "💟 성격",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: screenWidth * 0.025,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 0.8,
+                          ),
+                        ),
+                        Text(
+                          "👀 외모",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: screenWidth * 0.025,
+                            fontWeight: FontWeight.w400,
                             letterSpacing: 0.8,
                           ),
                         ),
                       ],
-                    ))),
-              ]),
+                    )
+                )
+              ]
+          ),
         ),
       ),
       Container(
         margin: EdgeInsets.fromLTRB(
             0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-        width: containerWidth * 0.75,
-        height: containerHeight * 0.2,
+        width: screenWidth * 0.75,
+        height: screenWidth * 0.4,
         decoration: BoxDecoration(
-          color: Color(0xffFEC200),
+          color: const Color(0xffFEC200),
           borderRadius: BorderRadius.circular(40.0),
         ),
         child: Center(
@@ -340,43 +367,47 @@ class _ContainerSliderState extends State<ContainerSlider> {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.002),
-                Container(
-                    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                    width: screenWidth * 0.8,
-                    height: screenHeight * 0.07,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFF5EFF),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Center(
-                        child: Column(
+                Divider(
+                    color: Colors.black,
+                    height: screenHeight * 0.02),
+                Center(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "👀 눈누",
+                          "💟 성격",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: screenWidth * 0.025,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 0.8,
+                          ),
+                        ),
+                        Text(
+                          "👀 외모",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: screenWidth * 0.025,
+                            fontWeight: FontWeight.w400,
                             letterSpacing: 0.8,
                           ),
                         ),
                       ],
-                    ))),
-              ]),
+                    )
+                )
+              ]
+          ),
         ),
       ),
       Container(
         margin: EdgeInsets.fromLTRB(
             0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-        width: containerWidth * 0.75,
-        height: containerHeight * 0.2,
+        width: screenWidth * 0.75,
+        height: screenWidth * 0.4,
         decoration: BoxDecoration(
-          color: Color(0xffFEC200),
+          color: const Color(0xffFEC200),
           borderRadius: BorderRadius.circular(40.0),
         ),
         child: Center(
@@ -391,43 +422,47 @@ class _ContainerSliderState extends State<ContainerSlider> {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.002),
-                Container(
-                    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                    width: screenWidth * 0.8,
-                    height: screenHeight * 0.07,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFF5EFF),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Center(
-                        child: Column(
+                Divider(
+                    color: Colors.black,
+                    height: screenHeight * 0.02),
+                Center(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "👀 난나",
+                          "💟 성격",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: screenWidth * 0.025,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 0.8,
+                          ),
+                        ),
+                        Text(
+                          "👀 외모",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: screenWidth * 0.025,
+                            fontWeight: FontWeight.w400,
                             letterSpacing: 0.8,
                           ),
                         ),
                       ],
-                    ))),
-              ]),
+                    )
+                )
+              ]
+          ),
         ),
       ),
       Container(
         margin: EdgeInsets.fromLTRB(
             0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-        width: containerWidth * 0.75,
-        height: containerHeight * 0.2,
+        width: screenWidth * 0.75,
+        height: screenWidth * 0.4,
         decoration: BoxDecoration(
-          color: Color(0xffFEC200),
+          color: const Color(0xffFEC200),
           borderRadius: BorderRadius.circular(40.0),
         ),
         child: Center(
@@ -436,39 +471,43 @@ class _ContainerSliderState extends State<ContainerSlider> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  '23 · ENTJ',
+                  '24 · ENTJ',
                   style: TextStyle(
                     fontSize: screenWidth * 0.035,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.002),
-                Container(
-                    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                    width: screenWidth * 0.8,
-                    height: screenHeight * 0.07,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFF5EFF),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Center(
-                        child: Column(
+                Divider(
+                    color: Colors.black,
+                    height: screenHeight * 0.02),
+                Center(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "👀 나나나",
+                          "💟 성격",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: screenWidth * 0.025,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 0.8,
+                          ),
+                        ),
+                        Text(
+                          "👀 외모",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: screenWidth * 0.025,
+                            fontWeight: FontWeight.w400,
                             letterSpacing: 0.8,
                           ),
                         ),
                       ],
-                    ))),
-              ]),
+                    )
+                )
+              ]
+          ),
         ),
       ),
     ];
@@ -478,10 +517,10 @@ class _ContainerSliderState extends State<ContainerSlider> {
         margin: EdgeInsets.fromLTRB(
             0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-        width: containerWidth * 0.75,
-        height: containerHeight * 0.3,
+        width: screenWidth * 0.75,
+        height: screenWidth * 0.4,
         decoration: BoxDecoration(
-          color: Color(0xffFEC200),
+          color: const Color(0xffFEC200),
           borderRadius: BorderRadius.circular(40.0),
         ),
         child: Center(
@@ -496,43 +535,47 @@ class _ContainerSliderState extends State<ContainerSlider> {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.002),
-                Container(
-                    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                    width: screenWidth * 0.8,
-                    height: screenHeight * 0.07,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[600],
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Center(
-                        child: Column(
+                Divider(
+                    color: Colors.black,
+                    height: screenHeight * 0.02),
+                Center(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "👀 ㄴㄴ",
+                          "💟 성격2222222",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: screenWidth * 0.025,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 0.8,
+                          ),
+                        ),
+                        Text(
+                          "👀 외모2222222",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: screenWidth * 0.025,
+                            fontWeight: FontWeight.w400,
                             letterSpacing: 0.8,
                           ),
                         ),
                       ],
-                    ))),
-              ]),
+                    )
+                )
+              ]
+          ),
         ),
       ),
       Container(
         margin: EdgeInsets.fromLTRB(
             0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-        width: containerWidth * 0.75,
-        height: containerHeight * 0.2,
+        width: screenWidth * 0.75,
+        height: screenWidth * 0.4,
         decoration: BoxDecoration(
-          color: Color(0xffFEC200),
+          color: const Color(0xffFEC200),
           borderRadius: BorderRadius.circular(40.0),
         ),
         child: Center(
@@ -547,43 +590,47 @@ class _ContainerSliderState extends State<ContainerSlider> {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.002),
-                Container(
-                    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                    width: screenWidth * 0.8,
-                    height: screenHeight * 0.07,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[600],
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Center(
-                        child: Column(
+                Divider(
+                    color: Colors.black,
+                    height: screenHeight * 0.02),
+                Center(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "👀 눈누",
+                          "💟 성격2222222",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: screenWidth * 0.025,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 0.8,
+                          ),
+                        ),
+                        Text(
+                          "👀 외모2222222",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: screenWidth * 0.025,
+                            fontWeight: FontWeight.w400,
                             letterSpacing: 0.8,
                           ),
                         ),
                       ],
-                    ))),
-              ]),
+                    )
+                )
+              ]
+          ),
         ),
       ),
       Container(
         margin: EdgeInsets.fromLTRB(
             0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-        width: containerWidth * 0.75,
-        height: containerHeight * 0.2,
+        width: screenWidth * 0.75,
+        height: screenWidth * 0.4,
         decoration: BoxDecoration(
-          color: Color(0xffFEC200),
+          color: const Color(0xffFEC200),
           borderRadius: BorderRadius.circular(40.0),
         ),
         child: Center(
@@ -598,33 +645,37 @@ class _ContainerSliderState extends State<ContainerSlider> {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.002),
-                Container(
-                    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                    width: screenWidth * 0.8,
-                    height: screenHeight * 0.07,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[600],
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Center(
-                        child: Column(
+                Divider(
+                    color: Colors.black,
+                    height: screenHeight * 0.02),
+                Center(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "👀 난나",
+                          "💟 성격222222",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: screenWidth * 0.025,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 0.8,
+                          ),
+                        ),
+                        Text(
+                          "👀 외모222222",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: screenWidth * 0.025,
+                            fontWeight: FontWeight.w400,
                             letterSpacing: 0.8,
                           ),
                         ),
                       ],
-                    ))),
-              ]),
+                    )
+                )
+              ]
+          ),
         ),
       ),
       Container(
@@ -632,9 +683,9 @@ class _ContainerSliderState extends State<ContainerSlider> {
             0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
         width: screenWidth * 0.75,
-        height: screenHeight * 0.2,
+        height: screenWidth * 0.4,
         decoration: BoxDecoration(
-          color: Color(0xffFEC200),
+          color: const Color(0xffFEC200),
           borderRadius: BorderRadius.circular(40.0),
         ),
         child: Center(
@@ -643,39 +694,43 @@ class _ContainerSliderState extends State<ContainerSlider> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  '23 · ENTJ',
+                  '24 · ENTJ',
                   style: TextStyle(
                     fontSize: screenWidth * 0.035,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.002),
-                Container(
-                    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                    width: screenWidth * 0.8,
-                    height: screenHeight * 0.07,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[600],
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Center(
-                        child: Column(
+                Divider(
+                    color: Colors.black,
+                    height: screenHeight * 0.02),
+                Center(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "👀 나나나",
+                          "💟 성격222222",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: screenWidth * 0.025,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 0.8,
+                          ),
+                        ),
+                        Text(
+                          "👀 외모222222",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: screenWidth * 0.025,
+                            fontWeight: FontWeight.w400,
                             letterSpacing: 0.8,
                           ),
                         ),
                       ],
-                    ))),
-              ]),
+                    )
+                )
+              ]
+          ),
         ),
       ),
     ];
@@ -704,7 +759,7 @@ class _ContainerSliderState extends State<ContainerSlider> {
                 '내가 플립한',
                 style: TextStyle(
                   color: isSelectedCarousel1
-                      ? Color(0xFFFF5EFF)
+                      ? Color(0xFF4B2FFE)
                       : Colors.black, //덮어쓰지 않게
                   fontSize: screenWidth * 0.032,
                   fontWeight: FontWeight.bold,
@@ -739,7 +794,7 @@ class _ContainerSliderState extends State<ContainerSlider> {
                   '나를 플립한',
                   style: TextStyle(
                     color:
-                        isSelectedCarousel2 ? Color(0xFFFF5EFF) : Colors.black,
+                        isSelectedCarousel2 ? Color(0xFF4B2FFE) : Colors.black,
                     fontSize: screenWidth * 0.032,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 0.8,
@@ -747,7 +802,7 @@ class _ContainerSliderState extends State<ContainerSlider> {
                 )),
           ],
         ),
-        SizedBox(height: screenHeight * 0.0023),
+        SizedBox(height: screenWidth * 0.007),
         _currentCarousel == 0
             ? CarouselSlider(
                 options: CarouselOptions(
@@ -757,9 +812,9 @@ class _ContainerSliderState extends State<ContainerSlider> {
                 ),
                 items: containerList1.map((container) {
                   return Container(
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    height: MediaQuery.of(context).size.height,
-                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    width: screenWidth* 0.7,
+                    height: screenWidth*0.3,
+                    //margin: const EdgeInsets.symmetric(vertical: 0.0),
                     child: container,
                   );
                 }).toList(),
@@ -774,9 +829,9 @@ class _ContainerSliderState extends State<ContainerSlider> {
                 ),
                 items: containerList2.map((container) {
                   return Container(
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    height: MediaQuery.of(context).size.height,
-                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    width: screenWidth * 0.7,
+                    height: screenWidth * 0.3,
+                    //margin: EdgeInsets.symmetric(horizontal: 5.0),
                     child: container,
                   );
                 }).toList(),
