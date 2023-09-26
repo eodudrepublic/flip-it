@@ -11,6 +11,7 @@ import 'package:flip_it/UI/ui3.dart';
 import 'package:flip_it/UI/ui4.dart';
 import 'package:flip_it/UI/ui5.dart';
 import 'package:flip_it/test.dart';
+import 'package:flip_it/testsu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'DB/firebase_options.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const TestScreen(),
+      home: const TestSignUp(),
       routes: {
         '/LogIn/signin': (context) => const SignIn(),
         '/LogIn/signup': (context) => SignUp(),
