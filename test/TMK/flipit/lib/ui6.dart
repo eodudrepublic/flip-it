@@ -67,7 +67,7 @@ class _UI6State extends State<UI6> {
             ],
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-              child: Image.asset('asses/images/appIcon.png'),
+              child: Image.asset('assets/images/appIcon.png'),
             ),
           ),
           body: Form(
@@ -86,7 +86,7 @@ class _UI6State extends State<UI6> {
                     margin: EdgeInsets.symmetric(vertical: screenHeight * 0.03),
 
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: screenWidth*0.06, vertical: screenHeight*0.023),
+                      padding: EdgeInsets.fromLTRB(screenWidth*0.06, screenHeight*0.03, screenWidth*0.06, 0),
                       child: Center(
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -96,68 +96,63 @@ class _UI6State extends State<UI6> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                  '23 · ENTP',
+                                  '23 · ISTJ',
                                   style: TextStyle(
                                       fontSize: screenWidth * 0.05,
                                       fontWeight: FontWeight.w900),
                                   ),
                                 ]
                               ),
-                              SizedBox(height:screenHeight*0.003),
-                              Container(
-                                  margin: EdgeInsets.fromLTRB(0.0, screenHeight * 0.023, 0.0, screenHeight * 0.018),
-                                  padding: EdgeInsets.fromLTRB(15.0, 2.0, 15.0, 5.0),
-                                  width: screenWidth * 0.9,
-                                  height: screenHeight * 0.09,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFFF5EFF),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  child: Center(
+                              //const Spacer(),
+                              Divider(
+                                color:Colors.black,
+                                  height:screenHeight*0.05),
+                             Center(
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             //margin 으로 바뀌고 textformfield로 바꿔야함
-                                            "👀 영화 몰아보는 거 좋아하고 의사 표현을 지혜롭게 하는 사람",
+                                            "💟 감정을 잘 챙길 줄 알고 섬세한 사람\n👀 운동 잘하고 키 크면 더 좋아!",
                                             style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: screenHeight * 0.015,
-                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: screenWidth * 0.04,
+                                              fontWeight: FontWeight.w500,
                                               letterSpacing: 0.8,
                                             ),
                                           ),
                                         ],
                                       )
-                                  )
-                              ),
-                              SizedBox(height:screenHeight*0.006),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => UI7()),
-                                  );
-                                  },
-                                style: ElevatedButton.styleFrom(
-                                //fixedSize: Size(screenWidth*0.05, screenHeight*0.008),
-                                  backgroundColor: Color(0xFFE0E0E0), // 버튼 배경색
-                                  foregroundColor: Color(0xFF7D7D7D), // 텍스트 색상
-                                  elevation: 0, // 그림자 크기
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: screenWidth * 0.03,
-                                      vertical: screenHeight * 0.01),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                ),
-                                child: Text(
-                                  "뒷면 보기",
-                                  style: TextStyle(
-                                    fontSize: screenHeight * 0.013,
-                                    fontWeight: FontWeight.w700,
-                                    letterSpacing: 0.8,
+                              const Spacer(),
+                              Container(
+                                margin: EdgeInsets.only(bottom: screenHeight*0.0125),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => UI7()),
+                                    );
+                                    },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Color(0xFFE0E0E0), // 버튼 배경색
+                                    foregroundColor: Color(0xFF7D7D7D), // 텍스트 색상
+                                    elevation: 0, // 그림자 크기
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: screenWidth * 0.03,
+                                        vertical: screenHeight * 0.01),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    "뒷면 보기",
+                                    style: TextStyle(
+                                      fontSize: screenWidth * 0.03,
+                                      fontWeight: FontWeight.w700,
+                                      letterSpacing: 0.8,
+                                    ),
                                   ),
                                 ),
                               ),
