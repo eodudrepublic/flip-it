@@ -57,11 +57,11 @@ class _UI7State extends State<UI7> {
                   color: Color(0xffFEC200),
                   borderRadius: BorderRadius.circular(60.0)),
               width: screenWidth * 0.85,
-              height: screenHeight * 0.72,
-              margin: EdgeInsets.symmetric(vertical: 10.0),
-              padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+              height: screenHeight * 0.7,
+              margin: EdgeInsets.symmetric(vertical: screenHeight*0.02),
+              //padding: EdgeInsets.symmetric(horizontal: screenWidth*0.02, vertical: screenHeight*0.02),
               child: Padding(
-                padding: EdgeInsets.all(30.0),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth*0.09, vertical: screenHeight*0.038),
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -75,38 +75,45 @@ class _UI7State extends State<UI7> {
                               Text('📏\n164cm',
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: screenWidth * 0.035,
+                                    fontSize: screenHeight * 0.021,
                                     fontWeight: FontWeight.normal,
                                     letterSpacing: 0.8,
                                   )),
                               Text('체형 보통',
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: screenWidth * 0.035,
+                                    fontSize: screenHeight * 0.021,
                                     fontWeight: FontWeight.normal,
                                     letterSpacing: 0.8,
                                   )),
-                              SizedBox(height: containerHeight * 0.07),
+                              Text('근육 근육',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: screenHeight * 0.021,
+                                    fontWeight: FontWeight.normal,
+                                    letterSpacing: 0.8,
+                                  )),
+                              SizedBox(height: screenHeight*0.03),
                               Text('🎨\n야구랑 바다 보러 가는 거 좋아함.',
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: screenWidth * 0.035,
+                                    fontSize: screenHeight * 0.021,
                                     fontWeight: FontWeight.normal,
                                     letterSpacing: 0.8,
                                   )),
-                              SizedBox(height: 30.0),
+                              SizedBox(height: screenHeight*0.03),
                               Row(children: [
                                 Text('💗\n다투고 난 후엔 ',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: screenWidth * 0.035,
+                                      fontSize: screenHeight * 0.021,
                                       fontWeight: FontWeight.normal,
                                       letterSpacing: 0.8,
                                     )),
                                 Text('\n시간 두고 얘기',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: screenWidth * 0.035,
+                                      fontSize: screenHeight * 0.021,
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 0.8,
                                     ))
@@ -115,14 +122,14 @@ class _UI7State extends State<UI7> {
                                 Text('개인 시간은 ',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: screenWidth * 0.035,
+                                      fontSize: screenHeight * 0.021,
                                       fontWeight: FontWeight.normal,
                                       letterSpacing: 0.8,
                                     )),
                                 Text('필요로 함',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: screenWidth * 0.035,
+                                      fontSize: screenHeight * 0.021,
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 0.8,
                                     ))
@@ -131,29 +138,29 @@ class _UI7State extends State<UI7> {
                                 Text('자율성은 ',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: screenWidth * 0.035,
+                                      fontSize: screenHeight * 0.021,
                                       fontWeight: FontWeight.normal,
                                       letterSpacing: 0.8,
                                     )),
                                 Text('보통',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: screenWidth * 0.035,
+                                      fontSize: screenHeight * 0.021,
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 0.8,
                                     ))
                               ]),
-                              SizedBox(height: 30.0),
+                              SizedBox(height: screenHeight*0.03),
                               Text('🚬\n비흡연 ',
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: screenWidth * 0.035,
+                                    fontSize: screenHeight * 0.021,
                                     fontWeight: FontWeight.normal,
                                     letterSpacing: 0.8,
                                   )),
                             ],
                           )),
-                      SizedBox(height: containerHeight * 0.12),
+                      SizedBox(height: screenHeight * 0.115),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: ElevatedButton(
@@ -164,11 +171,12 @@ class _UI7State extends State<UI7> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
+                            minimumSize:Size(screenWidth*0.125, screenHeight*0.03),
                             backgroundColor: Color(0xFFE0E0E0), // 버튼 배경색
                             foregroundColor: Color(0xFF7D7D7D), // 텍스트 색상
                             elevation: 0, // 그림자 크기
                             padding: EdgeInsets.symmetric(
-                                horizontal: 15.0, vertical: 10.0), // 내부 여백
+                                horizontal: screenWidth*0.01, vertical: screenHeight*0.003), // 내부 여백
                             shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.circular(15.0), // 버튼 모서리 둥글기
@@ -177,8 +185,8 @@ class _UI7State extends State<UI7> {
                           child: Text(
                             "닫기",
                             style: TextStyle(
-                              fontSize: screenWidth * 0.0258,
-                              fontWeight: FontWeight.bold,
+                              fontSize: screenHeight * 0.015,
+                              fontWeight: FontWeight.w700,
                               letterSpacing: 0.8,
                             ),
                           ),

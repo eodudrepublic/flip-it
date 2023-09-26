@@ -115,6 +115,7 @@ class UI10 extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: screenHeight*0.012),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -129,7 +130,7 @@ class UI10 extends StatelessWidget {
                         '회원가입',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: screenHeight * 0.015,
+                          fontSize: screenHeight * 0.017,
                           decoration: TextDecoration.underline, // 밑줄 추가
                         ),
                       ),

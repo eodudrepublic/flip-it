@@ -116,7 +116,7 @@ class _SignUpState extends State<SignUp> {
       appBar: AppBar(
         backgroundColor: Colors.white70,
         title: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenWidth*0.02, vertical:screenHeight*0.001),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth*0.028, vertical:screenHeight*0.001),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -402,7 +402,7 @@ class _SignUpState extends State<SignUp> {
                         },  //다음 페이지로
                         child: Text('확인'),
                         style: ElevatedButton.styleFrom(
-                          minimumSize: Size(screenWidth*0.8, 0),
+                          minimumSize: Size(screenWidth*0.85, screenHeight*0.045),
                           backgroundColor: isConfirmationButtonEnabled //왜 안될까...
                               ? Color(0xFF4B2FFE)  // 활성화되었을 때 파란색
                               : Color(0xFFE5E5E5),
