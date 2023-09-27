@@ -44,25 +44,34 @@ class _TestSignUpState extends State<TestSignUp> {
 
   Future<void> _sendVerificationEmail() async {
     try {
-      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: _idController.text, password: _passwordController.text);
+      final existingUserMethods = await _firebaseAuth.fetchSignInMethodsForEmail(_idController.text);
 
-      if (userCredential.additionalUserInfo!.isNewUser == false) {
-        setState(() {
-          _isAccountExist = true;
-        });
+      // 이메일이 이미 사용 중인지 확인
+      if (existingUserMethods.isNotEmpty) {
+        // 이메일 주소로 이미 계정이 있다면 인증 이메일을 다시 보내려고 시도
+        UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
+            email: _idController.text, password: _passwordController.text);
+
+        await userCredential.user!.sendEmailVerification();
+
+        // Snackbar 추가
+        _scaffoldMessengerKey.currentState!.showSnackBar(SnackBar(content: Text('이미 로그인을 시도중인 계정입니다!')));
       } else {
+        // 이메일 주소로 계정이 없다면 새 계정을 생성하고 인증 이메일 보내기
+        UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+            email: _idController.text, password: _passwordController.text);
+
         await userCredential.user!.sendEmailVerification();
         setState(() {
           _isVerificationSent = true;
         });
       }
-
     } catch (e) {
       print("Error: $e");
       _scaffoldMessengerKey.currentState!.showSnackBar(SnackBar(content: Text('오류가 발생했습니다.')));
     }
   }
+
 
   Future<void> _checkVerification() async {
     User? user = _firebaseAuth.currentUser;
