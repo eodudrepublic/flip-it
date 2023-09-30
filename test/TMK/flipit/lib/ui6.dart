@@ -28,13 +28,6 @@ class _UI6State extends State<UI6> {
     super.initState();
   }
 
-  void _changeTextStyle() {
-    setState(() {
-      _textStyle = TextStyle(
-          fontSize: 16, fontWeight: FontWeight.w900, color: Color(0xff4B2FFE));
-    });
-  }
-
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -113,8 +106,8 @@ class _UI6State extends State<UI6> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            //textformfield로 바꿔야함
-                                            "💟 감정을 살필 줄 알고 솔직섬세한 사람", //입력받는 거 글자수 제한 걸어야함
+                                            //수정 가능하도록
+                                            "💟 이상형-성격격격성격성격성격", //입력받는 거 글자수 제한 걸어야함
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: screenWidth * 0.04,
@@ -124,8 +117,8 @@ class _UI6State extends State<UI6> {
                                             ),
                                           ),
                                           Text(
-                                            //textformfield로 바꿔야함
-                                            "👀 운동 잘하고 키 크면 더 좋아!",
+                                            //수정 가능하도록
+                                            "👀 이상형-외모모모모모외모외모",
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: screenWidth * 0.04,
@@ -220,7 +213,7 @@ class _UI6State extends State<UI6> {
                                   Text(
                                     '33', //서버 데이터
                                     style: TextStyle(
-                                      color: Color(0xFF4B2FFE),
+                                      color: Colors.black,//Color(0xffFEC200),
                                       fontSize: screenWidth * 0.035,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'PressStart2P-Regular',
@@ -245,13 +238,13 @@ class _UI6State extends State<UI6> {
             ),
           ),
           bottomNavigationBar: BottomAppBar(
-              child: Container(
+              child: SizedBox(
                   height: screenHeight * 0.08,
                   child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const Icon(Icons.home),
-                        const Icon(Icons.layers),
+                        Icon(Icons.home),
+                        Icon(Icons.layers),
                       ]
                   )
               )
@@ -628,7 +621,7 @@ class _ContainerSliderState extends State<ContainerSlider> {
             0.0, screenHeight * 0.003, 0.0, screenHeight * 0.05),
         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
         width: screenWidth * 0.75,
-        height: screenWidth * 0.4,
+        height: screenWidth * 0.46,
         decoration: BoxDecoration(
           color: const Color(0xffFEC200),
           borderRadius: BorderRadius.circular(40.0),
@@ -813,7 +806,7 @@ class _ContainerSliderState extends State<ContainerSlider> {
                 items: containerList1.map((container) {
                   return Container(
                     width: screenWidth* 0.7,
-                    height: screenWidth*0.3,
+                    height: screenWidth*0.35,
                     //margin: const EdgeInsets.symmetric(vertical: 0.0),
                     child: container,
                   );
@@ -830,7 +823,7 @@ class _ContainerSliderState extends State<ContainerSlider> {
                 items: containerList2.map((container) {
                   return Container(
                     width: screenWidth * 0.7,
-                    height: screenWidth * 0.3,
+                    height: screenWidth * 0.35,
                     //margin: EdgeInsets.symmetric(horizontal: 5.0),
                     child: container,
                   );

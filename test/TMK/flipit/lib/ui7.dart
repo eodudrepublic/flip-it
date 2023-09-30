@@ -86,7 +86,7 @@ class _UI7State extends State<UI7> {
                                     fontWeight: FontWeight.normal,
                                     letterSpacing: 0.8,
                                   )),
-                              Text('근육 근육',
+                              Text('근육 보통',
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: screenWidth * 0.04,
