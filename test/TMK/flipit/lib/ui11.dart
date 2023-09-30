@@ -102,7 +102,7 @@ class _AgreementState extends State<Agreement> {
                         Text(
                           '아래 약관에 모두 동의합니다.',
                           style: TextStyle(
-                            fontSize: screenHeight*0.02,
+                            fontSize: screenWidth*0.04,
                             fontWeight: FontWeight.w900,
                             color: Colors.black,
                           ),
@@ -125,7 +125,7 @@ class _AgreementState extends State<Agreement> {
                         Text(
                           '서비스이용약관 동의 (필수)',
                           style: TextStyle(
-                            fontSize: screenHeight*0.02,
+                            fontSize: screenWidth*0.04,
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                           ),
@@ -156,7 +156,7 @@ class _AgreementState extends State<Agreement> {
                                       child: Text(
                                         snapshot.data ?? '', // Display the content of the text file
                                         style: TextStyle(
-                                          fontSize: screenHeight * 0.02,
+                                          fontSize: screenWidth * 0.04,
                                           color: Colors.black,
                                         ),
                                       ),
@@ -185,7 +185,7 @@ class _AgreementState extends State<Agreement> {
                         Text(
                           '개인정보 수집 및 이용 동의 (필수)',
                           style: TextStyle(
-                            fontSize: screenHeight*0.02,
+                            fontSize: screenWidth*0.04,
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                           ),
@@ -216,7 +216,7 @@ class _AgreementState extends State<Agreement> {
                                     child: Text(
                                       snapshot.data ?? '', // Display the content of the text file
                                       style: TextStyle(
-                                        fontSize: screenHeight * 0.02,
+                                        fontSize: screenWidth * 0.04,
                                         color: Colors.black,
                                       ),
                                     ),
@@ -245,7 +245,7 @@ class _AgreementState extends State<Agreement> {
                         Text(
                           '개인정보 취급 위탁 동의 (필수)',
                           style: TextStyle(
-                            fontSize: screenHeight*0.02,
+                            fontSize: screenWidth*0.04,
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                           ),
@@ -276,7 +276,7 @@ class _AgreementState extends State<Agreement> {
                                     child: Text(
                                       snapshot.data ?? '', // Display the content of the text file
                                       style: TextStyle(
-                                        fontSize: screenHeight * 0.02,
+                                        fontSize: screenWidth * 0.04,
                                         color: Colors.black,
                                       ),
                                     ),
@@ -304,7 +304,7 @@ class _AgreementState extends State<Agreement> {
                         Text(
                           '광고성 정보 수신 동의 (선택)',
                           style: TextStyle(
-                            fontSize: screenHeight*0.02,
+                            fontSize: screenWidth*0.04,
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                           ),
@@ -326,7 +326,7 @@ class _AgreementState extends State<Agreement> {
                         Text(
                           '본인 명의를 이용하여 가입을 진행하겠습니다.',
                           style: TextStyle(
-                            fontSize: screenHeight*0.02,
+                            fontSize: screenWidth*0.04,
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                           ),
@@ -348,7 +348,7 @@ class _AgreementState extends State<Agreement> {
                                     child: Text(
                                       '부모님, 친구 등 타인의 명의로 가입할 수 없습니다.',
                                       style: TextStyle(
-                                        fontSize: screenHeight * 0.02,
+                                        fontSize: screenWidth * 0.04,
                                         color: Colors.black,
                                       ),
                                     ),
@@ -372,7 +372,7 @@ class _AgreementState extends State<Agreement> {
                         Text(
                           '만 14세 이상입니다.',
                           style: TextStyle(
-                            fontSize: screenHeight*0.02,
+                            fontSize: screenWidth*0.04,
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                           ),
@@ -394,7 +394,7 @@ class _AgreementState extends State<Agreement> {
                             child: Text(
                               '플립-잇은 국내 대학생을 위한 서비스이며, 본인 인증을 통해 만 14세 이상만 가입할 수 있습니다. ',
                               style: TextStyle(
-                                fontSize: screenHeight * 0.02,
+                                fontSize: screenWidth * 0.04,
                                 color: Colors.black,
                               ),
                             ),
