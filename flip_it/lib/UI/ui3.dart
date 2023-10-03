@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flip_it/UI/ui1.dart';
 import 'package:flip_it/UI/ui4.dart';
 import 'package:flutter/material.dart';
 
@@ -10,24 +11,24 @@ class UI3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const UI4();
-                  },
-                ),
-              );
-            },
-            iconSize: 40,
-            icon: const Icon(Icons.person_outline),
-          )
-        ],
-      ),
+      // appBar: AppBar(
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //             builder: (context) {
+      //               return const UI4();
+      //             },
+      //           ),
+      //         );
+      //       },
+      //       iconSize: 40,
+      //       icon: const Icon(Icons.person_outline),
+      //     )
+      //   ],
+      // ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -61,7 +62,10 @@ class UI3 extends StatelessWidget {
                     width: 400.0,
                     height: 170.0,
                     decoration: BoxDecoration(
-                      color: Colors.grey[300],
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/heart.png'),
+                          fit:BoxFit.cover
+                      ),
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                     child: const Padding(
@@ -105,7 +109,10 @@ class UI3 extends StatelessWidget {
                   width: 400.0,
                   height: 150.0,
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/dumbbell.png'),
+                        fit:BoxFit.cover
+                    ),
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: const Column(
@@ -139,7 +146,10 @@ class UI3 extends StatelessWidget {
                   width: 400.0,
                   height: 150.0,
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/glasses.png'),
+                        fit:BoxFit.cover
+                    ),
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: const Column(
@@ -191,8 +201,8 @@ class _CustomDialogState extends State<CustomDialog> {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
             child: Container(
-                // color: Colors.black.withOpacity(0.4),
-                ),
+              // color: Colors.black.withOpacity(0.4),
+            ),
           ),
         ),
         // 팝업 내용
@@ -239,7 +249,16 @@ class _CustomDialogState extends State<CustomDialog> {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return UI1();
+                    },
+                  ),
+                );
+              },
               child: const Text(
                 '입장하기',
                 style: TextStyle(color: Colors.white),

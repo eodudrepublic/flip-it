@@ -4,13 +4,20 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
+/// Default [FirebaseOptions] for use with your Firebase apps.
+///
+/// Example:
+/// ```dart
+/// import 'firebase_options.dart';
+/// // ...
+/// await Firebase.initializeApp(
+///   options: DefaultFirebaseOptions.currentPlatform,
+/// );
+/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -39,21 +46,30 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyB8UCEdrO348FVYDZ30grMhH-ern2jX0UA',
+    appId: '1:218277062103:web:8a4e78782849fcf0e91792',
+    messagingSenderId: '218277062103',
+    projectId: 'flip-it-cb0d4',
+    authDomain: 'flip-it-cb0d4.firebaseapp.com',
+    storageBucket: 'flip-it-cb0d4.appspot.com',
+    measurementId: 'G-MZG3RSZXZY',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyABHR3oIm2lu321I3rrfn9RXpqXkiFvfNM',
-    appId: '1:596199382762:android:db62555056f2c97936c193',
-    messagingSenderId: '596199382762',
-    projectId: 'take-off-c23a1',
-    storageBucket: 'take-off-c23a1.appspot.com',
+    apiKey: 'AIzaSyDAlcmgth8FnoJ28QbrxlNs_hqc5CtfiTk',
+    appId: '1:218277062103:android:687f58e2883a4fcce91792',
+    messagingSenderId: '218277062103',
+    projectId: 'flip-it-cb0d4',
+    storageBucket: 'flip-it-cb0d4.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDFWjpeTTyDOAJrQ_HYlwkm2FwtqK8RyPg',
-    appId: '1:596199382762:ios:07efffccf6054f4a36c193',
-    messagingSenderId: '596199382762',
-    projectId: 'take-off-c23a1',
-    storageBucket: 'take-off-c23a1.appspot.com',
-    iosClientId: '596199382762-20dddkekm4bl0uj4l6f7ot2jvkkmh2s0.apps.googleusercontent.com',
-    iosBundleId: 'com.example.flipIt',
+    apiKey: 'AIzaSyDWY3OktRZMZw3FJm1GlqQW3RroubQuE1o',
+    appId: '1:218277062103:ios:54e156e0898c3c12e91792',
+    messagingSenderId: '218277062103',
+    projectId: 'flip-it-cb0d4',
+    storageBucket: 'flip-it-cb0d4.appspot.com',
+    iosBundleId: 'com.takeoff.flipIt',
   );
 }

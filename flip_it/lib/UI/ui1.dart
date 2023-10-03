@@ -1,4 +1,5 @@
 import 'package:flip_it/UI/ui3.dart';
+import 'package:flip_it/UI/ui5.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -28,7 +29,7 @@ class _UI1State extends State<UI1> {
       _controller_MBTI.value = _controller_MBTI.value.copyWith(
         text: text,
         selection:
-            TextSelection(baseOffset: text.length, extentOffset: text.length),
+        TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
       );
     });
@@ -108,7 +109,7 @@ class _UI1State extends State<UI1> {
                               fontWeight: FontWeight.bold,
                             ),
                             contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            const EdgeInsets.symmetric(horizontal: 20.0),
                             fillColor: Colors.white,
                             filled: true,
                             border: OutlineInputBorder(
@@ -159,7 +160,7 @@ class _UI1State extends State<UI1> {
                               fontWeight: FontWeight.bold,
                             ),
                             contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            const EdgeInsets.symmetric(horizontal: 20.0),
                             fillColor: Colors.white,
                             filled: true,
                             border: OutlineInputBorder(
@@ -209,7 +210,7 @@ class _UI1State extends State<UI1> {
                               fontWeight: FontWeight.bold,
                             ),
                             contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            const EdgeInsets.symmetric(horizontal: 20.0),
                             fillColor: Colors.white,
                             filled: true,
                             border: OutlineInputBorder(
@@ -280,7 +281,7 @@ class _UI1State extends State<UI1> {
                               fontWeight: FontWeight.bold,
                             ),
                             contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            const EdgeInsets.symmetric(horizontal: 20.0),
                             fillColor: Colors.white,
                             filled: true,
                             border: OutlineInputBorder(
@@ -331,7 +332,7 @@ class _UI1State extends State<UI1> {
                             ),
                             decoration: const InputDecoration(
                               contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 20.0),
+                              EdgeInsets.symmetric(horizontal: 20.0),
                               border: OutlineInputBorder(
                                 borderSide: BorderSide.none,
                               ),
@@ -461,19 +462,19 @@ class _UI1State extends State<UI1> {
 
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      Fluttertoast.showToast(
-          msg: "저장되었습니다.",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
+      // Fluttertoast.showToast(
+      //     msg: "저장되었습니다.",
+      //     toastLength: Toast.LENGTH_SHORT,
+      //     gravity: ToastGravity.CENTER,
+      //     timeInSecForIosWeb: 1,
+      //     backgroundColor: Colors.red,
+      //     textColor: Colors.white,
+      //     fontSize: 16.0);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const UI3();
+            return const UI5();
           },
         ),
       );

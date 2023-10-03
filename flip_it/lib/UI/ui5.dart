@@ -1,17 +1,18 @@
 import 'package:dots_indicator/dots_indicator.dart';
-//import 'package:flip_it/test.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-final List<Widget> pages = [
-  const Detail1(),
-  const Detail2(),
-  const Detail3(),
-  const Detail4(),
-  const Detail5(),
-  const Detail6()
-];
+import 'memo_test.dart';
+
+// final List<Widget> pages = [
+//   const Detail1(),
+//   const Detail2(),
+//   const Detail3(),
+//   const Detail4(),
+//   const Detail5(),
+//   const Detail6()
+// ];
 
 class UI5 extends StatefulWidget {
   const UI5({super.key});
@@ -21,68 +22,83 @@ class UI5 extends StatefulWidget {
 }
 
 class _UI5State extends State<UI5> {
-  final _controller = PageController();
-  int _currentPage = 0;
+  late List<Widget> pages;
+  String valueFromPage1 = "";
+  String valueFromPage2 = "";
 
   @override
   void initState() {
     super.initState();
+
     _controller.addListener(() {
       setState(() {
         _currentPage = _controller.page!.round();
         print(_currentPage);
       });
     });
+
+    pages = [
+      Detail1(onValueChange: (value) {
+        setState(() {
+          valueFromPage1 = value;
+        });
+      }),
+      Detail3(onValueChange: (value) {
+        setState(() {
+          valueFromPage2 = value;
+        });
+      }),
+      // ... 다른 페이지들 ...
+    ];
   }
+
+  final _controller = PageController();
+  int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical:screenHeight*0.0001,horizontal:screenWidth*0.01),
+          padding: const EdgeInsets.all(30.0),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
-                  height: screenHeight*0.127,
+                const SizedBox(
+                  height: 50,
                 ),
-                Text(
+                const Text(
                   "<연애!>에 온 걸 환영해!",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: screenWidth*0.05,
+                    fontSize: 24.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  "상대가 \"FLIP\"하기 전 포스트잇 뒷면에 공개될 상세 정보야.",
+                const Text(
+                  "상대가 \"플립\"하면 포스트잇 뒷면에 공개될 상세 정보야.",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: screenWidth*0.036,
+                    fontSize: 15.0,
                   ),
                 ),
-                SizedBox(
-                  height: screenHeight*0.025,
+                const SizedBox(
+                  height: 20,
                 ),
                 DotsIndicator(
                   dotsCount: pages.length,
-                  //position: _currentPage,
+                  position: _currentPage,
                   decorator: DotsDecorator(
-                    activeColor: const Color(0xFF4B2FFE),
-                    size: Size.square(screenWidth*0.02),
-                    activeSize: Size(screenWidth*0.036, screenWidth*0.02),
+                    size: const Size.square(9.0),
+                    activeSize: const Size(18.0, 9.0),
                     activeShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0)),
                   ),
                 ),
                 SizedBox(
-                  height: screenWidth * 0.9,
+                  height: 380,
                   child: PageView.custom(
                     controller: _controller,
                     childrenDelegate: SliverChildBuilderDelegate(
@@ -99,8 +115,8 @@ class _UI5State extends State<UI5> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: screenHeight*0.033,
+                const SizedBox(
+                  height: 40,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -113,39 +129,35 @@ class _UI5State extends State<UI5> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF4B2FFE),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                      ),
-                      child: SizedBox(
-                        width: screenWidth*0.25,
-                        height: screenWidth*0.14,
+                          backgroundColor: const Color(0xFF4B2FFE)),
+                      child: const SizedBox(
+                        width: 95.0,
+                        height: 55.0,
                         child: Center(
                           child: Text(
                             "이전",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: screenWidth*0.05,
+                              fontSize: 22.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: screenWidth*0.02,
+                    const SizedBox(
+                      width: 10,
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        /*if (_currentPage == pages.length-1) {
+                        if (_currentPage == pages.length-1) {
                           Navigator.pushReplacement(
                             context,
-                            /*MaterialPageRoute(
+                            MaterialPageRoute(
                               builder: (context) {
-                                //return ReadTest();
+                                return ReadTest();
                               },
-                            ),*/
+                            ),
                           );
                           Fluttertoast.showToast(
                               msg: "저장되었습니다.",
@@ -156,29 +168,25 @@ class _UI5State extends State<UI5> {
                               textColor: Colors.white,
                               fontSize: 16.0);
                         }
-                        else {*/
-                        _controller.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
-                        //}
+                        else {
+                          _controller.nextPage(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF4B2FFE),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                      ),
+                          backgroundColor: const Color(0xFF4B2FFE)),
                       child: SizedBox(
-                        width: screenWidth*0.25,
-                        height: screenWidth*0.14,
+                        width: 95.0,
+                        height: 55.0,
                         child: Center(
                           child: Text(
                             _currentPage == pages.length-1 ? "저장" :
                             "다음",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
-                              fontSize: screenWidth*0.05,
+                              fontSize: 22.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -187,31 +195,35 @@ class _UI5State extends State<UI5> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: screenHeight*0.015,
+                const SizedBox(
+                  height: 20,
                 ),
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0x804B2FFE),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                  ),
-                  child: SizedBox(
-                    width: screenWidth * 0.6,
-                    height: screenWidth*0.14,
+                      backgroundColor: const Color(0x804B2FFE)),
+                  child: const SizedBox(
+                    width: 250.0,
+                    height: 55.0,
                     child: Center(
                       child: Text(
                         "임시저장하고 나가기",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: screenWidth*0.05,
+                          fontSize: 22.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Value from Page 1: $valueFromPage1"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Value from Page 2: $valueFromPage2"),
                 ),
               ],
             ),
@@ -228,31 +240,39 @@ class _UI5State extends State<UI5> {
   }
 }
 
-class Detail1 extends StatelessWidget {
-  const Detail1({super.key});
+class Detail1 extends StatefulWidget {
+  final Function(String) onValueChange;
+  const Detail1({super.key, required this.onValueChange});
+
+  @override
+  State<Detail1> createState() => _Detail1State();
+}
+
+class _Detail1State extends State<Detail1> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.yellow[700],
         borderRadius: BorderRadius.circular(60.0),
       ),
       child: Padding(
-        padding: EdgeInsets.all(screenWidth*0.07),
+        padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
-            SizedBox(
-              height: screenWidth*0.036,
-            ),
-            Text(
+            const Text(
               "키",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: screenWidth*0.077,
+                fontSize: 35,
               ),
             ),
             const Spacer(),
@@ -262,15 +282,17 @@ class Detail1 extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   child: TextFormField(
+                    controller: _controller,
+                    onChanged: widget.onValueChange,
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.done,
                     style: const TextStyle(fontSize: 30),
                     decoration: InputDecoration(
                       hintText: "164",
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         color: Colors.grey,
-                        fontSize: screenWidth*0.077,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
                       contentPadding: const EdgeInsets.symmetric(
@@ -284,14 +306,14 @@ class Detail1 extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: screenWidth*0.02,
+                const SizedBox(
+                  width: 20,
                 ),
-                Text(
+                const Text(
                   "cm",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: screenWidth*0.077,
+                    fontSize: 35,
                   ),
                 )
               ],
@@ -301,6 +323,12 @@ class Detail1 extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
 
@@ -317,36 +345,30 @@ class _Detail2State extends State<Detail2> {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.yellow[700],
         borderRadius: BorderRadius.circular(60.0),
       ),
       child: Padding(
-        padding: EdgeInsets.all(screenWidth*0.07),
+        padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
-            SizedBox(
-              height: screenWidth*0.036,
-            ),
-            Text(
+            const Text(
               "체형",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: screenWidth*0.077,
+                fontSize: 35,
               ),
             ),
-            Text(
-              "2개까지 선택 가능해!",
+            const Text(
+              "2개까지만 선택 가능해!!",
               style: TextStyle(
-                fontSize: screenWidth*0.036,
+                fontSize: 20,
               ),
             ),
-            SizedBox(
-              height: screenWidth*0.07,
+            const SizedBox(
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -356,8 +378,8 @@ class _Detail2State extends State<Detail2> {
                 customRadio('뚠뚠', 2),
               ],
             ),
-            Divider( //항목 분리
-              height: screenHeight*0.05,
+            const SizedBox(
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -405,7 +427,7 @@ class _Detail2State extends State<Detail2> {
             txt,
             style: TextStyle(
               color: selectedBody.contains(index)
-                  ? const Color(0xFF4B2FFE)
+                  ? const Color(0xFFFF5EFF)
                   : Colors.black,
               fontSize: 15.0,
               fontWeight: FontWeight.bold,
@@ -414,7 +436,7 @@ class _Detail2State extends State<Detail2> {
           RawMaterialButton(
             onPressed: () => changeIndex(index),
             fillColor:
-            selectedBody.contains(index) ? const Color(0xFF4B2FFE) : Colors.white,
+            selectedBody.contains(index) ? const Color(0xFFFF5EFF) : Colors.white,
             shape: const CircleBorder(),
           ),
         ],
@@ -454,7 +476,7 @@ class _Detail2State extends State<Detail2> {
             txt,
             style: TextStyle(
               color: selectedMuscle.contains(index)
-                  ? const Color(0xFF4B2FFE)
+                  ? const Color(0xFFFF5EFF)
                   : Colors.black,
               fontSize: 15.0,
               fontWeight: FontWeight.bold,
@@ -463,7 +485,7 @@ class _Detail2State extends State<Detail2> {
           RawMaterialButton(
             onPressed: () => changeIndex2(index),
             fillColor: selectedMuscle.contains(index)
-                ? const Color(0xFF4B2FFE)
+                ? const Color(0xFFFF5EFF)
                 : Colors.white,
             shape: const CircleBorder(),
           ),
@@ -473,42 +495,58 @@ class _Detail2State extends State<Detail2> {
   }
 }
 
-class Detail3 extends StatelessWidget {
-  const Detail3({super.key});
+class Detail3 extends StatefulWidget {
+  final Function(String) onValueChange;
+  const Detail3({super.key, required this.onValueChange});
+
+  @override
+  State<Detail3> createState() => _Detail3State();
+}
+
+class _Detail3State extends State<Detail3> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.yellow[700],
         borderRadius: BorderRadius.circular(60.0),
       ),
       child: Padding(
-        padding: EdgeInsets.all(screenWidth*0.07),
+        padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
-            SizedBox(
-              height: screenWidth*0.036,
-            ),
-            Text(
+            const Text(
               "취미",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: screenWidth*0.077,
+                fontSize: 35,
               ),
             ),
-            SizedBox(
-              height: screenWidth*0.07,
+            const SizedBox(
+              height: 20,
             ),
             TextFormField(
+              controller: _controller,
+              onChanged: widget.onValueChange,
               maxLines: 7,
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(
-                hintText: "ex. 운동, 집콕, 야구 보기, 맛집 투어",
+                hintText: "ex. 취미를 적어봥",
                 hintStyle: const TextStyle(
                   color: Colors.grey,
                   fontWeight: FontWeight.bold,
@@ -544,35 +582,32 @@ class _Detail4State extends State<Detail4> {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.yellow[700],
         borderRadius: BorderRadius.circular(60.0),
       ),
       child: Padding(
-        padding: EdgeInsets.all(screenWidth*0.07),
+        padding: const EdgeInsets.all(25.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
+            const Center(
               child: Text(
-                "연애 스타일",
+                "연애스타일",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: screenWidth*0.077,
+                  fontSize: 35,
                 ),
               ),
             ),
-            SizedBox(
-              height:screenWidth*0.05,
+            const SizedBox(
+              height: 20,
             ),
-            Text(
+            const Text(
               "Q. 다투고 난 후?",
               style: TextStyle(
-                fontSize: screenWidth*0.036,
+                fontSize: 15,
               ),
             ),
             Row(
@@ -583,13 +618,13 @@ class _Detail4State extends State<Detail4> {
                 customRadio1("넘어가기", 2),
               ],
             ),
-            SizedBox(
-              height: screenWidth*0.03,
+            const SizedBox(
+              height: 20,
             ),
-            Text(
+            const Text(
               "Q. 개인 시간?",
               style: TextStyle(
-                fontSize: screenWidth*0.036,
+                fontSize: 15,
               ),
             ),
             Row(
@@ -600,13 +635,13 @@ class _Detail4State extends State<Detail4> {
                 customRadio2("필요해", 2),
               ],
             ),
-            SizedBox(
-              height: screenWidth*0.03,
+            const SizedBox(
+              height: 20,
             ),
-            Text(
+            const Text(
               "Q. 자율시간?",
               style: TextStyle(
-                fontSize: screenWidth*0.036,
+                fontSize: 15,
               ),
             ),
             Row(
@@ -638,12 +673,12 @@ class _Detail4State extends State<Detail4> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0)),
             side: BorderSide(
-                color: selected1 == index ? Color(0xFF4B2FFE) : Colors.black),
-            backgroundColor: selected1 == index ? Color(0xFF4B2FFE) : Colors.white),
+                color: selected1 == index ? Colors.cyan : Colors.black),
+            backgroundColor: Colors.white),
         child: Text(
           txt,
           style: TextStyle(
-            color: selected1 == index ? Colors.white : Colors.black,
+            color: selected1 == index ? Colors.cyan : Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -666,12 +701,12 @@ class _Detail4State extends State<Detail4> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0)),
             side: BorderSide(
-                color: selected2 == index ? Color(0xFF4B2FFE) : Colors.black),
-            backgroundColor: selected2 == index? Color(0xFF4B2FFE) : Colors.white),
+                color: selected2 == index ? Colors.cyan : Colors.black),
+            backgroundColor: Colors.white),
         child: Text(
           txt,
           style: TextStyle(
-            color: selected2 == index ? Colors.white : Colors.black,
+            color: selected2 == index ? Colors.cyan : Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -694,12 +729,12 @@ class _Detail4State extends State<Detail4> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0)),
             side: BorderSide(
-                color: selected3 == index ? Color(0xFF4B2FFE) : Colors.black),
-            backgroundColor: selected3 == index? Color(0xFF4B2FFE) : Colors.white),
+                color: selected3 == index ? Colors.cyan : Colors.black),
+            backgroundColor: Colors.white),
         child: Text(
           txt,
           style: TextStyle(
-            color: selected3 == index ? Colors.white : Colors.black,
+            color: selected3 == index ? Colors.cyan : Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -720,9 +755,6 @@ class _Detail5State extends State<Detail5> {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.yellow[700],
@@ -732,34 +764,31 @@ class _Detail5State extends State<Detail5> {
         padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
-            SizedBox(
-              height: screenWidth*0.036,
-            ),
-            Text(
+            const Text(
               "흡연 여부",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: screenWidth*0.077,
+                fontSize: 35,
               ),
             ),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(
+                const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "NO",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: screenWidth*0.06,
+                        fontSize: 25,
                       ),
                     ),
                     Text(
                       "비흡연",
                       style: TextStyle(
-                        fontSize: screenWidth*0.05,
+                        fontSize: 20,
                       ),
                     ),
                   ],
@@ -771,7 +800,7 @@ class _Detail5State extends State<Detail5> {
                   scale: 2,
                   child: CupertinoSwitch(
                     value: _isChecked,
-                    activeColor: const Color(0xFF4B2FFE),
+                    activeColor: const Color(0xFFFF5EFF),
                     onChanged: (bool? value) {
                       setState(() {
                         _isChecked = value ?? false;
@@ -782,20 +811,20 @@ class _Detail5State extends State<Detail5> {
                 const SizedBox(
                   width: 40,
                 ),
-                Column(
+                const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "YES",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: screenWidth*0.06,
+                        fontSize: 25,
                       ),
                     ),
                     Text(
                       "흡연",
                       style: TextStyle(
-                        fontSize: screenWidth*0.05,
+                        fontSize: 20,
                       ),
                     ),
                   ],
@@ -815,9 +844,6 @@ class Detail6 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.yellow[700],
@@ -827,25 +853,21 @@ class Detail6 extends StatelessWidget {
         padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
-            SizedBox(
-              height: screenWidth*0.036,
-            ),
-            Text(
+            const Text(
               "연락 방법",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: screenWidth*0.077,
+                fontSize: 35,
               ),
             ),
-            SizedBox(
-              height: screenWidth*0.02,
+            const SizedBox(
+              height: 20,
             ),
-            Text(
-              "상대가 \"FLIP\" 해야 공개되는 정보야.\n인스타인지 카톡인지 적어둬야 상대방이 알 수 있어!",
+            const Text(
+              "인스타인지 카톡인지 적어둬야 상대방이 알 수 있어!!",
               style: TextStyle(
-                fontSize: screenWidth*0.036,
+                fontSize: 15,
               ),
-              textAlign: TextAlign.center,
             ),
             const SizedBox(
               height: 40,
